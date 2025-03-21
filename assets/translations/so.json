@@ -1,0 +1,13 @@
+{
+  "welcome": "Soo dhawow!",
+  "welcomeToSaveKaro": "Ku soo dhowow keydkaro",
+  "easySaveYourMoney": "Si fudud ayaa loo badbaadiyaa lacagtaada",
+  "login": "Soo iibsasho",
+  "signUp": "Is-qor",
+  "microphonePermissionRequired": "Ogolaanshaha makarafoonka ayaa loo baahan yahay",
+  "microphoneAccessIsRequiredToSecurelyRecordYourVoiceForVerificationDuringTheSignInAndSignUpProcess": "Helitaanka makarafoonka waxaa looga baahan yahay in si adag loogu diiwaan geliyo codkaaga si loo xaqiijiyo inta lagu gudajiro nidaamka gelitaanka iyo nidaamka is-qoritaanka",
+  "cameraPermissionRequired": "Ogolaansho kaameeradu u baahan tahay",
+  "cameraAccessIsRequiredToSecurelyCaptureYourPictureForVerificationDuringTheSignInAndSignUpProcess": "Marin u helka kamaradda ayaa loo baahan yahay si aad si buuxda ugu qabato sawirkaaga si aad u xaqiijiso inta lagu guda jiro gelitaanka iyo nidaamka is-qoritaanka",
+  "settings": "Dejinta",
+  "cancel": "Burin"
+}

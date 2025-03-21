@@ -1,0 +1,13 @@
+{
+  "welcome": "Welcome!",
+  "welcomeToSaveKaro": "Welcome to SaveKaro",
+  "easySaveYourMoney": "Easy Save your money",
+  "login": "Login",
+  "signUp": "Sign Up",
+  "microphonePermissionRequired": "Microphone Permission Required",
+  "microphoneAccessIsRequiredToSecurelyRecordYourVoiceForVerificationDuringTheSignInAndSignUpProcess": "Microphone access is required to securely record your voice for verification during the sign-in and sign-up process",
+  "cameraPermissionRequired": "Camera Permission Required",
+  "cameraAccessIsRequiredToSecurelyCaptureYourPictureForVerificationDuringTheSignInAndSignUpProcess": "Camera access is required to securely capture your picture for verification during the sign-in and sign-up process",
+  "settings": "Settings",
+  "cancel": "Cancel"
+}
