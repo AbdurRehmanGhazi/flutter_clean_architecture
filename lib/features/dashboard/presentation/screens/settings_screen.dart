@@ -7,7 +7,7 @@ import '../../../../core/widgets/labels/description_text.dart';
 import '../../../../core/widgets/labels/title_text.dart';
 import '../../../../core/secrets/shared_preference.dart';
 import '../../../../core/theme/app_pallete.dart';
-import '../../../../rounter/route_utils.dart';
+import '../../../../rounter/app_route_utils.dart';
 
 class SettingsScreen extends StatelessWidget {
   SettingsScreen({super.key});
@@ -71,7 +71,7 @@ class SettingsScreen extends StatelessWidget {
                     onTap: () async {
                       if (index == options.length - 1) {
                         await SharedPreference.saveLogin(false);
-                        context.go(APP_PAGE.welcome.toPath);
+                        context.go(AppRoute.welcome.toPath);
                       }
                     },
                     child: Container(

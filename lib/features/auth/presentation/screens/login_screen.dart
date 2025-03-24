@@ -9,7 +9,7 @@ import '../../../../core/widgets/labels/title_text.dart';
 import '../../../../core/secrets/shared_preference.dart';
 import '../../../../core/utils/show_snackbar.dart';
 import '../../../../configs/injector/init_dependencies.dart';
-import '../../../../rounter/route_utils.dart';
+import '../../../../rounter/app_route_utils.dart';
 import '../../domain/usecases/login_usecase.dart';
 import '../bloc/login_bloc/login_bloc.dart';
 
@@ -51,7 +51,7 @@ class _LoginView extends StatelessWidget {
         if (state is LoginSuccess) {
           // context.pushNamed(APP_PAGE.otpVerification.toName, extra: state.loginResponse);
           await SharedPreference.saveLogin(true);
-          context.go(APP_PAGE.dashboard.toPath);
+          context.go(AppRoute.dashboard.toPath);
         } else if (state is LoginFailure) {
           showSnackBar(state.message, context);
         }

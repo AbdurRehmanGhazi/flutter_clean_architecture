@@ -14,8 +14,8 @@ import '../../../../core/widgets/buttons/gradient_button.dart';
 import '../../../../core/widgets/gradient_icon.dart';
 import '../../../../core/widgets/labels/title_text.dart';
 import '../../../../features/auth/presentation/screens/mobile_number_verification_screen.dart';
-import '../../../../rounter/app_router.dart';
-import '../../../../rounter/route_utils.dart';
+import '../../../../rounter/app_route_config.dart';
+import '../../../../rounter/app_route_utils.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -30,11 +30,11 @@ class _WelcomeView extends StatelessWidget {
   const _WelcomeView({super.key});
 
   _navToMobileNumberVerificationScreen(BuildContext context) {
-    context.pushNamed(APP_PAGE.mobileNumberVerification.toName);
+    context.pushNamed(AppRoute.mobileNumberVerification.toName);
   }
 
   _navToLoginScreen(BuildContext context) {
-    context.pushNamed(APP_PAGE.login.toName);
+    context.pushNamed(AppRoute.login.toName);
   }
 
   _getLocaleButtons(BuildContext context) => Row(

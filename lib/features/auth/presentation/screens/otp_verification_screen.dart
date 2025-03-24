@@ -14,7 +14,7 @@ import '../../../../features/auth/domain/usecases/otp_verification_usecase.dart'
 import '../../../../features/auth/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import '../../../../features/auth/presentation/screens/registration_screen.dart';
 import '../../../../configs/injector/init_dependencies.dart';
-import '../../../../rounter/route_utils.dart';
+import '../../../../rounter/app_route_utils.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
   final MobileNumberVerificationResponse mobileNumberVerificationResponse;
@@ -60,7 +60,7 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
     return BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
       listener: (context, state) {
         if (state is OtpVerificationSuccess) {
-          context.pushNamed(APP_PAGE.registration.toName, extra: widget.mobileNumberVerificationResponse.phone);
+          context.pushNamed(AppRoute.registration.toName, extra: widget.mobileNumberVerificationResponse.phone);
         } else if (state is OtpResendSuccess) {
           // showSnackBar(state.model.phone ?? '', context);
           showSnackBar('OTP Resend Successfully!', context);

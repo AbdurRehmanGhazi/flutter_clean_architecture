@@ -9,7 +9,7 @@ import '../../../../core/utils/show_snackbar.dart';
 import '../../../../features/auth/domain/usecases/mobile_number_verification_usecase.dart';
 import '../../../../features/auth/presentation/bloc/mobile_number_verification_bloc/mobile_number_verification_bloc.dart';
 import '../../../../configs/injector/init_dependencies.dart';
-import '../../../../rounter/route_utils.dart';
+import '../../../../rounter/app_route_utils.dart';
 
 class MobileNumberVerificationScreen extends StatelessWidget {
   const MobileNumberVerificationScreen({super.key});
@@ -44,7 +44,7 @@ class _MobileNumberVerificationView extends StatelessWidget {
       listener: (context, state) {
         if (state is MobileNumberVerified) {
           // Navigator.push(context, OTPVerificationScreen.route(mobileNumberVerificationResponse: state.response));
-          context.pushNamed(APP_PAGE.otpVerification.toName, extra: state.response);
+          context.pushNamed(AppRoute.otpVerification.toName, extra: state.response);
         } else if (state is AuthFailure) {
           showSnackBar(state.message, context);
         }

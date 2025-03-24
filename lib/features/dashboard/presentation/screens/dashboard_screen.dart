@@ -6,7 +6,7 @@ import '../../../../core/widgets/styles/gradeint_container.dart';
 import '../../../../core/widgets/labels/description_text.dart';
 import '../../../../core/widgets/labels/title_text.dart';
 import '../../../../core/theme/app_pallete.dart';
-import '../../../../rounter/route_utils.dart';
+import '../../../../rounter/app_route_utils.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -18,7 +18,7 @@ class DashboardScreen extends StatelessWidget {
         title: const Text('Save Kro'),
         leading: IconButton(
             onPressed: () {
-              context.pushNamed(APP_PAGE.settings.toName);
+              context.pushNamed(AppRoute.settings.toName);
             },
             icon: const Icon(Icons.account_circle_outlined),
         ),

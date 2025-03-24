@@ -13,7 +13,7 @@ import '../../../../features/auth/domain/usecases/registration_usecase.dart';
 import '../../../../features/auth/presentation/bloc/registration/registration_bloc.dart';
 import '../../../../configs/injector/init_dependencies.dart';
 import '../../../../main.dart';
-import '../../../../rounter/route_utils.dart';
+import '../../../../rounter/app_route_utils.dart';
 
 class RegistrationScreen extends StatelessWidget {
   final String mobileNumber;
@@ -62,7 +62,7 @@ class _RegistrationViewState extends State<RegistrationView> {
     return BlocConsumer<RegistrationBloc, RegistrationState>(
         listener: (context, state) {
       if (state is RegistrationSuccess) {
-        context.go(APP_PAGE.welcome.toPath);
+        context.go(AppRoute.welcome.toPath);
         Timer(const Duration(milliseconds: 500), () => showSnackBar('Registration Complete Successfully!', globalNavigatorKey.currentContext));
       } else if (state is RegistrationFailure) {
         showSnackBar(state.message, context);

@@ -1,4 +1,4 @@
-enum APP_PAGE {
+enum AppRoute {
   welcome,
   mobileNumberVerification,
   otpVerification,
@@ -8,22 +8,22 @@ enum APP_PAGE {
   settings,
 }
 
-extension AppPageExtension on APP_PAGE {
+extension AppPageExtension on AppRoute {
   String get toPath {
     switch (this) {
-      case APP_PAGE.welcome:
+      case AppRoute.welcome:
         return "/";
-      case APP_PAGE.mobileNumberVerification:
+      case AppRoute.mobileNumberVerification:
         return "/mobileNumberVerification";
-      case APP_PAGE.otpVerification:
+      case AppRoute.otpVerification:
         return "/otpVerification";
-      case APP_PAGE.registration:
+      case AppRoute.registration:
         return "/registration";
-        case APP_PAGE.login:
+        case AppRoute.login:
         return "/login";
-        case APP_PAGE.dashboard:
+        case AppRoute.dashboard:
         return "/dashboard";
-        case APP_PAGE.settings:
+        case AppRoute.settings:
         return "/settings";
       default:
         return "/";
@@ -32,19 +32,19 @@ extension AppPageExtension on APP_PAGE {
 
   String get toName {
     switch (this) {
-      case APP_PAGE.welcome:
+      case AppRoute.welcome:
         return "WELCOME";
-      case APP_PAGE.mobileNumberVerification:
+      case AppRoute.mobileNumberVerification:
         return "MOBILE NUMBER VERIFICATION";
-      case APP_PAGE.otpVerification:
+      case AppRoute.otpVerification:
         return "OTP VERIFICATION";
-      case APP_PAGE.registration:
+      case AppRoute.registration:
         return "REGISTRATION";
-        case APP_PAGE.login:
+        case AppRoute.login:
         return "LOGIN";
-        case APP_PAGE.dashboard:
+        case AppRoute.dashboard:
         return "DASHBOARD";
-        case APP_PAGE.settings:
+        case AppRoute.settings:
         return "SETTINGS";
       default:
         return "WELCOME";
