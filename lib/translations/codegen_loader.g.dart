@@ -27,6 +27,19 @@ class CodegenLoader extends AssetLoader{
   "settings": "Settings",
   "cancel": "Cancel"
 };
+static const Map<String,dynamic> _ar = {
+  "welcome": "مرحباً!",
+  "welcomeToSaveKaro": "مرحبًا بك في أنقذ كارو",
+  "easySaveYourMoney": "من السهل توفير أموالك",
+  "login": "تسجيل الدخول",
+  "signUp": "اشتراك",
+  "microphonePermissionRequired": "إذن الميكروفون المطلوب",
+  "microphoneAccessIsRequiredToSecurelyRecordYourVoiceForVerificationDuringTheSignInAndSignUpProcess": "مطلوب الوصول إلى الميكروفون لتسجيل صوتك بشكل آمن للتحقق أثناء عملية تسجيل الدخول والاشتراك",
+  "cameraPermissionRequired": "إذن الكاميرا المطلوب",
+  "cameraAccessIsRequiredToSecurelyCaptureYourPictureForVerificationDuringTheSignInAndSignUpProcess": "مطلوب الوصول إلى الكاميرا لالتقاط صورتك بشكل آمن للتحقق منه أثناء عملية تسجيل الدخول والاشتراك",
+  "settings": "إعدادات",
+  "cancel": "يلغي"
+};
 static const Map<String,dynamic> _so = {
   "welcome": "Soo dhawow!",
   "welcomeToSaveKaro": "Ku soo dhowow keydkaro",
@@ -40,5 +53,5 @@ static const Map<String,dynamic> _so = {
   "settings": "Dejinta",
   "cancel": "Burin"
 };
-static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "so": _so};
+static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "ar": _ar, "so": _so};
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/app_pallete.dart';
+import '../../core/theme/app_pallete.dart';
 
 class GradientContainer extends StatelessWidget {
   final Widget child;

@@ -18,6 +18,7 @@
 	<array>
 		<string>en</string>
 		<string>so</string>
+		<string>ar</string>
 	</array>
 	<key>CFBundleName</key>
 	<string>flutter_clean_architecture</string>

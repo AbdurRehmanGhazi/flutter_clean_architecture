@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../translations/locale_keys.g.dart';
-import '../../widgets/dialogs/adaptive_alert_dialog.dart';
+import '../../../widgets/dialogs/adaptive_alert_dialog.dart';
 
 class MicrophonePermissionHandler {
   // Handle microphone permission

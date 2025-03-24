@@ -3,16 +3,17 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/core/constants/list_translation_locale.dart';
 import 'package:flutter_clean_architecture/core/theme/app_pallete.dart';
 import 'package:flutter_clean_architecture/core/theme/theme_bloc/theme_bloc.dart';
 import 'package:flutter_clean_architecture/translations/locale_keys.g.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/native_classes/langugage_manager.dart';
-import '../../../../core/widgets/classes/custom_page_route.dart';
-import '../../../../core/widgets/labels/description_text.dart';
-import '../../../../core/widgets/buttons/gradient_button.dart';
-import '../../../../core/widgets/gradient_icon.dart';
-import '../../../../core/widgets/labels/title_text.dart';
+import '../../../../widgets/classes/custom_page_route.dart';
+import '../../../../widgets/labels/description_text.dart';
+import '../../../../widgets/buttons/gradient_button.dart';
+import '../../../../widgets/gradient_icon.dart';
+import '../../../../widgets/labels/title_text.dart';
 import '../../../../features/auth/presentation/screens/mobile_number_verification_screen.dart';
 import '../../../../rounter/app_route_config.dart';
 import '../../../../rounter/app_route_utils.dart';
@@ -38,25 +39,28 @@ class _WelcomeView extends StatelessWidget {
   }
 
   _getLocaleButtons(BuildContext context) => Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () async {
-                await context.setLocale(Locale('en'));
-                if (Platform.isIOS) await LanguageManager.setPreferredLanguage('en');
-              },
-              child: DescriptionText(text: 'English'),
-            ),
+          ElevatedButton(
+            onPressed: () async {
+              await context.setLocale(englishLocale);
+              if (Platform.isIOS) await LanguageManager.setPreferredLanguage(englishLanguageCode);
+            },
+            child: DescriptionText(text: 'English'),
           ),
-          SizedBox(width: 24),
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () async {
-                await context.setLocale(Locale('so'));
-                if (Platform.isIOS) await LanguageManager.setPreferredLanguage('so');
-              },
-              child: DescriptionText(text: 'Somali'),
-            ),
+          ElevatedButton(
+            onPressed: () async {
+              await context.setLocale(somaliaLocale);
+              if (Platform.isIOS) await LanguageManager.setPreferredLanguage(somaliaLanguageCode);
+            },
+            child: DescriptionText(text: 'Somali'),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await context.setLocale(arabicLocale);
+              if (Platform.isIOS) await LanguageManager.setPreferredLanguage(arabicLanguageCode);
+            },
+            child: DescriptionText(text: 'Arabic'),
           )
         ],
       );

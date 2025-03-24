@@ -8,10 +8,10 @@ import 'configs/injector/init_dependencies.dart';
 import 'core/theme/app_pallete.dart';
 import 'core/theme/theme.dart';
 import 'core/theme/theme_bloc/theme_bloc.dart';
-import 'core/widgets/classes/custom_localization_delegates.dart';
 import 'main.dart';
 import 'rounter/app_route_config.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'widgets/classes/custom_localization_delegates.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

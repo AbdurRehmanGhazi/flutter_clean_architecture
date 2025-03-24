@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/widgets/textfields/custom_text_field.dart';
-import '../../../../core/widgets/buttons/gradient_button.dart';
-import '../../../../core/widgets/gradient_icon.dart';
-import '../../../../core/widgets/labels/title_text.dart';
+import '../../../../widgets/textfields/custom_text_field.dart';
+import '../../../../widgets/buttons/gradient_button.dart';
+import '../../../../widgets/gradient_icon.dart';
+import '../../../../widgets/labels/title_text.dart';
 import '../../../../core/utils/show_snackbar.dart';
 import '../../../../features/auth/domain/usecases/mobile_number_verification_usecase.dart';
 import '../../../../features/auth/presentation/bloc/mobile_number_verification_bloc/mobile_number_verification_bloc.dart';

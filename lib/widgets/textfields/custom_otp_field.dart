@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../theme/app_pallete.dart';
+import '../../core/theme/app_pallete.dart';
 
 class CustomOtpField extends StatefulWidget {
   final bool isEnabled;

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../theme/app_pallete.dart';
+import '../../core/theme/app_pallete.dart';
 
 BoxDecoration customContainerBoxDecoration({double borderRadius = 10, Color? borderColor, Color? bgColor}) => BoxDecoration(
     borderRadius: BorderRadius.circular(borderRadius),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/widgets/classes/custom_page_route.dart';
-import '../../../../core/widgets/styles/custom_container_box_decoration.dart';
-import '../../../../core/widgets/styles/gradeint_container.dart';
-import '../../../../core/widgets/labels/description_text.dart';
-import '../../../../core/widgets/labels/title_text.dart';
+import '../../../../widgets/classes/custom_page_route.dart';
+import '../../../../widgets/styles/custom_container_box_decoration.dart';
+import '../../../../widgets/styles/gradeint_container.dart';
+import '../../../../widgets/labels/description_text.dart';
+import '../../../../widgets/labels/title_text.dart';
 import '../../../../core/secrets/shared_preference.dart';
 import '../../../../core/theme/app_pallete.dart';
 import '../../../../rounter/app_route_utils.dart';

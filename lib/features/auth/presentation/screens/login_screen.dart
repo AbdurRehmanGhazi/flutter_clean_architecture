@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/widgets/textfields/custom_text_field.dart';
-import '../../../../core/widgets/buttons/gradient_button.dart';
-import '../../../../core/widgets/gradient_icon.dart';
-import '../../../../core/widgets/labels/title_text.dart';
+import '../../../../widgets/textfields/custom_text_field.dart';
+import '../../../../widgets/buttons/gradient_button.dart';
+import '../../../../widgets/gradient_icon.dart';
+import '../../../../widgets/labels/title_text.dart';
 import '../../../../core/secrets/shared_preference.dart';
 import '../../../../core/utils/show_snackbar.dart';
 import '../../../../configs/injector/init_dependencies.dart';

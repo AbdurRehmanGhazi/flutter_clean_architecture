@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../widgets/classes/rect_slider_thumb_shape.dart';
+import '../../widgets/classes/rect_slider_thumb_shape.dart';
 import 'app_pallete.dart';
 
 // class AppTheme {

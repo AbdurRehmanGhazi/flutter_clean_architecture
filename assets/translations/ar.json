@@ -1,0 +1,13 @@
+{
+  "welcome": "مرحباً!",
+  "welcomeToSaveKaro": "مرحبًا بك في أنقذ كارو",
+  "easySaveYourMoney": "من السهل توفير أموالك",
+  "login": "تسجيل الدخول",
+  "signUp": "اشتراك",
+  "microphonePermissionRequired": "إذن الميكروفون المطلوب",
+  "microphoneAccessIsRequiredToSecurelyRecordYourVoiceForVerificationDuringTheSignInAndSignUpProcess": "مطلوب الوصول إلى الميكروفون لتسجيل صوتك بشكل آمن للتحقق أثناء عملية تسجيل الدخول والاشتراك",
+  "cameraPermissionRequired": "إذن الكاميرا المطلوب",
+  "cameraAccessIsRequiredToSecurelyCaptureYourPictureForVerificationDuringTheSignInAndSignUpProcess": "مطلوب الوصول إلى الكاميرا لالتقاط صورتك بشكل آمن للتحقق منه أثناء عملية تسجيل الدخول والاشتراك",
+  "settings": "إعدادات",
+  "cancel": "يلغي"
+}

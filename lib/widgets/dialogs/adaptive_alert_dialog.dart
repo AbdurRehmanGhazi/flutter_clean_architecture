@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../theme/app_pallete.dart';
+import '../../core/theme/app_pallete.dart';
 
 class AdaptiveAlertDialog extends StatelessWidget {
   final String title;
