@@ -9,119 +9,109 @@ Localizations keys generator's command
 Show simulator on android studio command: **sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer**
 
 lib/
+│── config/                         // App configuration settings
+│   ├── env_config.dart              // Handles environment-specific configurations
+│   ├── app_constants.dart           // Global constants
+│   ├── app_secrets.dart             // API keys & secrets (ensure this is ignored in Git)
+│
 │── core/
 │   ├── network/
-│   │   ├── network_service.dart          // Handles HTTP requests, adds token in headers
-│   │   ├── api_endpoints.dart            // Defines API endpoints
-│   │   ├── network_exceptions.dart       // Handles API errors
-│   │   ├── base_response_model.dart      // Abstract base model class for API responses
+│   │   ├── network_service.dart     // Handles HTTP requests, adds token in headers
+│   │   ├── api_endpoints.dart       // Defines API endpoints
+│   │   ├── network_exceptions.dart  // Handles API errors
 │   ├── utils/
-│   │   ├── secure_storage_helper.dart    // Secure storage for tokens
-│   │   ├── constants.dart                // App-wide constants
 │   │   ├── extensions/
-│   │   │   ├── string_extension.dart     // String utilities and extensions
-│   │   │   ├── int_extension.dart        // Integer utilities and extensions
-│   │   │   ├── double_extension.dart     // Double utilities and extensions
-│   │   ├── custom_classes/               
-│   │   │   ├── custom_button.dart        // Custom styled button class
-│   │   │   ├── custom_text_field.dart    // Custom styled text input field class
-│   │   ├── permission_handler/           
-│   │   │   ├── camera_permission.dart    // Handles camera permissions
+│   │   │   ├── string_extensions.dart // String extensions
+│   │   │   ├── int_extensions.dart    // Integer extensions
+│   │   │   ├── double_extensions.dart // Double extensions
+│   │   ├── secure_storage_helper.dart // Secure storage for tokens
+│   │   ├── constants.dart           // App-wide constants
+│   │   ├── custom_classes/
+│   │   │   ├── custom_class.dart    // Custom reusable classes
+│   │   ├── permission_handler/
+│   │   │   ├── camera_permission.dart   // Handles camera permissions
 │   │   │   ├── microphone_permission.dart // Handles microphone permissions
 │   ├── errors/
-│   │   ├── failure.dart                  // Abstract failure class
-│   │   ├── exceptions.dart               // Custom exceptions for error handling
+│   │   ├── failure.dart            // Abstract failure class
+│   │   ├── exceptions.dart         // Custom exceptions
 │   ├── theme/
-│   │   ├── app_theme.dart                // Light & Dark themes
-│   │   ├── app_colors.dart               // Color constants
 │   │   ├── theme_bloc/
-│   │   │   ├── theme_bloc.dart           // Bloc for theme switching
-│   │   │   ├── theme_event.dart          // Events for theme changes
-│   │   │   ├── theme_state.dart          // States for theme changes
-│   ├── logging/
-│   │   ├── app_logger.dart               // Centralized logging service
-│   │   ├── analytics_service.dart        // App analytics tracking service
-│   ├── config/
-│   │   ├── environment_config.dart       // Environment-based app config
-│   │   ├── app_config.dart               // General app settings
-│   │   ├── env/
-│   │   │   ├── .env.dev                  // Development environment file
-│   │   │   ├── .env.prod                 // Production environment file
-│   │   │   ├── .env.staging              // Staging environment file
-│   ├── service_locator.dart              // Dependency injection setup (GetIt)
-│   ├── no_internet_bloc.dart             // Manages internet connectivity state
-│   ├── widgets/                          // ✅ Moved inside core folder
-│   │   ├── buttons/
-│   │   │   ├── primary_button.dart       // Primary button widget
-│   │   │   ├── secondary_button.dart     // Secondary button widget
-│   │   ├── dialogs/
-│   │   │   ├── confirmation_dialog.dart  // Confirmation dialog widget
-│   │   │   ├── error_dialog.dart         // Error dialog widget
-│   │   ├── inputs/
-│   │   │   ├── text_input_field.dart     // Custom text input field
-│   │   │   ├── password_field.dart       // Custom password input field
-│   │   ├── loaders/
-│   │   │   ├── loading_spinner.dart      // Loading spinner widget
-│   │   ├── cards/
-│   │   │   ├── info_card.dart            // Generic information card widget
-│   │   ├── forms/
-│   │   │   ├── custom_form.dart          // Modular form widget
-│   │   ├── pages/                        // ✅ Added global shared pages like dialogs
-│   │   │   ├── error_page.dart           // Generic error screen
-│   │   │   ├── no_internet_page.dart     // No internet connection screen
+│   │   │   ├── theme_bloc.dart     // Bloc for theme management
+│   │   │   ├── theme_event.dart    // Theme events
+│   │   │   ├── theme_state.dart    // Theme states
+│   │   ├── app_theme.dart          // Light & Dark themes
+│   │   ├── app_colors.dart         // Color file
+│   ├── no_internet_cubit.dart     // Manages internet connection state, prevents unnecessary UI rebuilds
+│   ├── service_locator.dart       // Dependency injection (GetIt)
+│   ├── README.md                  // Documentation for dependency injection setup and usage
+│   ├── fonts/
+│   │   ├── app_fonts.dart          // Custom fonts and typography
+│   ├── models/
+│   │   ├── base_model.dart         // Abstract base model class, all models should extend this
 │
 │── features/
 │   ├── auth/
 │   │   ├── data/
-│   │   │   ├── models/
-│   │   │   │   ├── user_model.dart       // Data model for user
 │   │   │   ├── data_sources/
 │   │   │   │   ├── auth_remote_data_source.dart // API Calls
 │   │   │   ├── repositories/
 │   │   │   │   ├── auth_repository_impl.dart   // Implementation of Auth Repository
 │   │   ├── domain/
 │   │   │   ├── entities/
-│   │   │   │   ├── user.dart             // User entity (business logic model)
+│   │   │   │   ├── user.dart       // User entity
 │   │   │   ├── repositories/
-│   │   │   │   ├── auth_repository.dart  // Repository interface
+│   │   │   │   ├── auth_repository.dart // Repository interface
 │   │   │   ├── usecases/
-│   │   │   │   ├── login_usecase.dart    // Login business logic
+│   │   │   │   ├── login_usecase.dart // Login UseCase
 │   │   ├── presentation/
 │   │   │   ├── bloc/
-│   │   │   │   ├── auth_bloc.dart        // Bloc for authentication management
-│   │   │   │   ├── auth_event.dart       // Events for authentication
-│   │   │   │   ├── auth_state.dart       // States for authentication
+│   │   │   │   ├── auth_bloc.dart    // Bloc for Auth (Handles token expiration, login failures, session state)
 │   │   │   ├── pages/
-│   │   │   │   ├── login_page.dart       // Login screen UI
+│   │   │   │   ├── login_page.dart   // Login UI
 │   │   │   ├── widgets/
-│   │   │   │   ├── auth_form.dart        // Authentication form widget
+│   │   │   │   ├── auth_form.dart    // Login form widget
 │   │   │   ├── validators/
-│   │   │   │   ├── auth_validators.dart  // Input validation logic for auth
-│   ├── di/
-│   │   ├── auth_di.dart                  // Dependency injection for Auth module
+│   │   │   │   ├── auth_validators.dart // Input validation logic for auth
 │
 │── app/
-│   ├── routes.dart                        // Manages named routes
-│   ├── app.dart                            // App entry point
-│   ├── main.dart                           // Runs the app
-│   ├── init_dependencies_main.dart         // ✅ Initializes dependencies before app launch
+│   ├── routes.dart                 // Manages named routes
+│   ├── app.dart                     // App entry point
+│   ├── main.dart                    // Runs the app
+│   ├── init_dependencies_main.dart  // Initializes dependencies at app startup
 │
-│── localization/
-│   ├── en.json                            // English language file
-│   ├── ar.json                            // Arabic language file
-│   ├── es.json                            // Spanish language file
+│── widgets/                         // Global shared widgets (moved to top level)
+│   ├── buttons/
+│   │   ├── primary_button.dart      // Primary button widget
+│   │   ├── secondary_button.dart    // Secondary button widget
+│   ├── dialogs/
+│   │   ├── confirmation_dialog.dart // Confirmation dialog widget
+│   │   ├── error_dialog.dart        // Error dialog widget
+│   ├── inputs/
+│   │   ├── text_input_field.dart    // Custom text input field
+│   │   ├── password_field.dart      // Custom password input field
+│   ├── loaders/
+│   │   ├── loading_spinner.dart     // Loading spinner widget
+│   ├── cards/
+│   │   ├── info_card.dart           // Generic information card widget
+│   ├── forms/
+│   │   ├── custom_form.dart         // Modular form widget
+│   ├── pages/
+│   │   ├── empty_page.dart          // Placeholder for reusable empty state pages
 │
-│── assets/
-│   ├── fonts/
-│   │   ├── Roboto-Regular.ttf
-│   │   ├── Roboto-Bold.ttf
+│── localization/                     // Multi-language support
+│   ├── en.json                       // English language file
+│   ├── es.json                       // Spanish language file
+│   ├── localization_helper.dart       // Handles localization logic
+│
+│── assets/                           // Fonts, images, icons, SVGs
 │   ├── images/
-│   │   ├── background.jpg
-│   │   ├── logo.png
+│   │   ├── logo.png                  // App logo
+│   │   ├── banner.jpg                // Sample banner
 │   ├── icons/
-│   │   ├── svg/
-│   │   │   ├── home_icon.svg
-│   │   │   ├── profile_icon.svg
-│   │   ├── png/
-│   │   │   ├── settings_icon.png
-│   │   │   ├── logout_icon.png
+│   │   ├── home_icon.png             // Home icon
+│   │   ├── user_icon.png             // User icon
+│   ├── svg/
+│   │   ├── settings.svg              // Settings icon
+│   │   ├── notifications.svg         // Notification icon
+│   ├── fonts/
+│   │   ├── custom_font.ttf           // Custom font

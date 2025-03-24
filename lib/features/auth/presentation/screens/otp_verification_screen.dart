@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/core/theme/app_pallete.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../widgets/textfields/custom_otp_field.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
@@ -93,7 +94,7 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
                     children: [
                       const Spacer(),
                       if (state is OtResendLoading ? state.isLoading : false)
-                        const SizedBox(height: 20, width: 20, child: Loader()),
+                        SizedBox(height: 20, width: 20, child: Loader(color: AppPalette.primaryColor)),
                       const SizedBox(width: 8),
                       HyperlinkText(
                         isEnable: true,

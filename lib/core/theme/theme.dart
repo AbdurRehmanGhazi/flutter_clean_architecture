@@ -106,7 +106,14 @@ class AppTheme {
         disabledBorder: _border(color: AppPalette.primaryBorderColor),
         errorBorder: _border(color: AppPalette.warningColor),
         focusedErrorBorder: _border(color: AppPalette.warningColor),
-      ));
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppPalette.gradient2, // Set default background color
+          foregroundColor: AppPalette.primaryTextColor, // Text color
+        ),
+      ),
+  );
 
   static lightMode(AppPaletteMain AppPalette) => ThemeData.light().copyWith(
       colorScheme: ColorScheme.dark(
@@ -150,5 +157,12 @@ class AppTheme {
         disabledBorder: _border(color: AppPalette.primaryBorderColor),
         errorBorder: _border(color: AppPalette.warningColor),
         focusedErrorBorder: _border(color: AppPalette.warningColor),
-      ));
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppPalette.gradient3, // Set default background color
+          foregroundColor: AppPalette.primaryTextColor, // Text color
+        ),
+      ),
+  );
 }
