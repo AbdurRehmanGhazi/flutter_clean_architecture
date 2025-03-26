@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'app_pallete.dart';
+import 'app_colors.dart';
 
 enum AppThemeMode { system, light, dark }
 
 class ThemeProvider with ChangeNotifier {
   AppThemeMode _themeMode = AppThemeMode.system; // Default to system mode
-  AppPaletteMain _appPalette = AppPaletteLightTheme();
+  AppColorsMain _appPalette = AppColorsLightTheme();
 
   AppThemeMode get themeMode => _themeMode;
 
-  AppPaletteMain get appPalette => _appPalette;
+  AppColorsMain get appPalette => _appPalette;
 
   ThemeProvider() {
     loadTheme();
@@ -58,17 +58,17 @@ class ThemeProvider with ChangeNotifier {
   void _updateThemeColors() {
     switch (_themeMode) {
       case AppThemeMode.light:
-        _appPalette = AppPaletteLightTheme();
+        _appPalette = AppColorsLightTheme();
         break;
       case AppThemeMode.dark:
-        _appPalette = AppPaletteDarkTheme();
+        _appPalette = AppColorsDarkTheme();
         break;
       case AppThemeMode.system:
       default:
       // Use system brightness to decide
         _appPalette = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark
-            ? AppPaletteDarkTheme()
-            : AppPaletteLightTheme();
+            ? AppColorsDarkTheme()
+            : AppColorsLightTheme();
         break;
     }
     // updateUI();
@@ -136,8 +136,8 @@ class ThemeProvider with ChangeNotifier {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // update status bar color
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: AppPalette.backgroundColor,
-        systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
+        statusBarColor: AppColors.backgroundColor,
+        systemNavigationBarColor: AppColors.backgroundColor, // navigation bar color
         statusBarIconBrightness: Brightness.light, // For Android status bar text color
         statusBarBrightness: Brightness.dark, // For iOS status bar text color
       ));
@@ -148,8 +148,8 @@ class ThemeProvider with ChangeNotifier {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // update status bar color
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: AppPalette.backgroundColor,
-        systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
+        statusBarColor: AppColors.backgroundColor,
+        systemNavigationBarColor: AppColors.backgroundColor, // navigation bar color
         statusBarIconBrightness: Brightness.dark, // For Android status bar text color
         statusBarBrightness: Brightness.light, // For iOS status bar text color
       ));

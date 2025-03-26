@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../core/utils/extensions/string.dart';
 import '../../core/utils/extensions/num.dart';
-import '../../core/theme/app_pallete.dart';
+import '../../core/theme/app_colors.dart';
 import '../classes/thousands_seperator_input_formatter.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -117,7 +117,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             : IconButton(
           icon: Icon(
             _passwordVisible ? Icons.visibility : Icons.visibility_off,
-            color: AppPalette.primaryButtonTextColor,
+            color: AppColors.primaryButtonTextColor,
           ),
           onPressed: () {
             setState(() {

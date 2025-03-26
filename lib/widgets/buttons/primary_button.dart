@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/core/theme/app_pallete.dart';
+import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
 import '../loader.dart';
 
 
@@ -24,12 +24,12 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isEnable && !isLoading ? onPressed : null,
       style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-        backgroundColor: WidgetStatePropertyAll(isEnable ? AppPalette.primaryColor : AppPalette.unselectedItemColor),
+        backgroundColor: WidgetStatePropertyAll(isEnable ? AppColors.primaryColor : AppColors.unselectedItemColor),
         shadowColor: WidgetStatePropertyAll(Colors.transparent),
         padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 0, horizontal: 12)),
         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
-          side: BorderSide(color: isEnable ? AppPalette.primaryColor : AppPalette.unselectedItemColor),
+          side: BorderSide(color: isEnable ? AppColors.primaryColor : AppColors.unselectedItemColor),
         )),
         minimumSize: WidgetStatePropertyAll(Size(double.minPositive, height)), // Full width with defined height
       ),

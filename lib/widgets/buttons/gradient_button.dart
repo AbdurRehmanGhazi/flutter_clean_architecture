@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_pallete.dart';
+import '../../core/theme/app_colors.dart';
 import '../loader.dart';
 
 class GradientButton extends StatelessWidget {
@@ -22,8 +22,8 @@ class GradientButton extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppPalette.gradient1,
-            AppPalette.gradient2,
+            AppColors.gradient1,
+            AppColors.gradient2,
             // AppPallete.gradient3,
           ],
           begin: Alignment.bottomLeft,
@@ -35,8 +35,8 @@ class GradientButton extends StatelessWidget {
         onPressed: onPressed,
         style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
           // fixedSize: const Size(395, 55),
-          backgroundColor: WidgetStatePropertyAll(AppPalette.transparentColor),
-          shadowColor: WidgetStatePropertyAll(AppPalette.transparentColor),
+          backgroundColor: WidgetStatePropertyAll(AppColors.transparentColor),
+          shadowColor: WidgetStatePropertyAll(AppColors.transparentColor),
           textStyle: WidgetStatePropertyAll(TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,

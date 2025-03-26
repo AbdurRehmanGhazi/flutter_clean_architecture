@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/core/theme/app_pallete.dart';
+import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
 
 import '../../main.dart';
 
@@ -17,8 +17,8 @@ void showSnackBar(String content, [BuildContext? context]) {
     ..hideCurrentSnackBar()
     ..showSnackBar(
       SnackBar(
-        content: Text(content, style: TextStyle(color: AppPalette.backgroundColor),),
-        backgroundColor: AppPalette.primaryTextColor,
+        content: Text(content, style: TextStyle(color: AppColors.backgroundColor),),
+        backgroundColor: AppColors.primaryTextColor,
       ),
     );
 }

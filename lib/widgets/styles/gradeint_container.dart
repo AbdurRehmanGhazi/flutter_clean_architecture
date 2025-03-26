@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_pallete.dart';
+import '../../core/theme/app_colors.dart';
 
 class GradientContainer extends StatelessWidget {
   final Widget child;
@@ -15,8 +15,8 @@ class GradientContainer extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppPalette.gradient1,
-              AppPalette.gradient2,
+              AppColors.gradient1,
+              AppColors.gradient2,
               // AppPalette.gradient3,
             ],
             begin: Alignment.bottomLeft,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_pallete.dart';
+import '../core/theme/app_colors.dart';
 
 class Loader extends StatelessWidget {
   const Loader({super.key, this.color});
@@ -11,7 +11,7 @@ class Loader extends StatelessWidget {
     return Transform.scale(
       scale: 0.75,
       child: Center(
-        child: CircularProgressIndicator(color: color ?? AppPalette.whiteColor),
+        child: CircularProgressIndicator(color: color ?? AppColors.whiteColor),
       ),
     );
   }

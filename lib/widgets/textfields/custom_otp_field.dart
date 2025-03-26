@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../core/theme/app_pallete.dart';
+import '../../core/theme/app_colors.dart';
 
 class CustomOtpField extends StatefulWidget {
   final bool isEnabled;
@@ -44,10 +44,10 @@ class _CustomOtpFieldState extends State<CustomOtpField> {
 
   @override
   Widget build(BuildContext context) {
-    final errorBorderColor = AppPalette.warningColor;
+    final errorBorderColor = AppColors.warningColor;
     final borderColor = widget.isEnabled
-        ? AppPalette.primaryColor
-        : AppPalette.primaryColor.withOpacity(0.5);
+        ? AppColors.primaryColor
+        : AppColors.primaryColor.withOpacity(0.5);
     final bottomBorderWidth = 4.0;
 
     final defaultPinTheme = PinTheme(
@@ -55,10 +55,10 @@ class _CustomOtpFieldState extends State<CustomOtpField> {
       height: 56,
       textStyle: TextStyle(
         fontSize: 22,
-        color: AppPalette.textFieldTitleColor, // Set the text color to black
+        color: AppColors.textFieldTitleColor, // Set the text color to black
       ),
       decoration: BoxDecoration(
-        color: widget.isEnabled ? AppPalette.textFieldBGColor : AppPalette.unselectedItemColor,
+        color: widget.isEnabled ? AppColors.textFieldBGColor : AppColors.unselectedItemColor,
         // Keep the box color white for both filled and unfilled states
         border: Border(
           bottom: BorderSide(

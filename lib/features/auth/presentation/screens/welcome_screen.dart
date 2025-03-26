@@ -4,7 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/constants/list_translation_locale.dart';
-import 'package:flutter_clean_architecture/core/theme/app_pallete.dart';
+import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
 import 'package:flutter_clean_architecture/core/theme/theme_bloc/theme_bloc.dart';
 import 'package:flutter_clean_architecture/translations/locale_keys.g.dart';
 import 'package:go_router/go_router.dart';
@@ -95,7 +95,7 @@ class _WelcomeView extends StatelessWidget {
         ],
       ),
       SizedBox(height: 16,),
-      Icon(context.watch<ThemeBloc>().state.themeIcon, size: 32, color: AppPalette.primaryTextColor,)
+      Icon(context.watch<ThemeBloc>().state.themeIcon, size: 32, color: AppColors.primaryTextColor,)
     ],
   );
 

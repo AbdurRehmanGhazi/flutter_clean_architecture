@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../core/theme/app_pallete.dart';
+import '../core/theme/app_colors.dart';
 
 class GradientIcon extends StatelessWidget {
   const GradientIcon({
@@ -15,7 +15,7 @@ class GradientIcon extends StatelessWidget {
     return ShaderMask(
       shaderCallback: (Rect bounds) {
         return LinearGradient(
-          colors: [AppPalette.gradient1, AppPalette.gradient2,],
+          colors: [AppColors.gradient1, AppColors.gradient2,],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ).createShader(bounds);

@@ -5,7 +5,7 @@ import '../../../../widgets/styles/custom_container_box_decoration.dart';
 import '../../../../widgets/styles/gradeint_container.dart';
 import '../../../../widgets/labels/description_text.dart';
 import '../../../../widgets/labels/title_text.dart';
-import '../../../../core/theme/app_pallete.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../rounter/app_route_utils.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -33,26 +33,26 @@ class DashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleText(text: 'Save Kro', color: AppPalette.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+                      TitleText(text: 'Save Kro', color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
                       const SizedBox(height: 8,),
-                      DescriptionText(text: 'Current Balance', color: AppPalette.whiteColor),
+                      DescriptionText(text: 'Current Balance', color: AppColors.whiteColor),
                       Row(
                         children: [
-                          TitleText(text: 'Rs. 23,222.00 ', color: AppPalette.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
-                          Icon(Icons.keyboard_arrow_right_rounded, color: AppPalette.whiteColor),
+                          TitleText(text: 'Rs. 23,222.00 ', color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+                          Icon(Icons.keyboard_arrow_right_rounded, color: AppColors.whiteColor),
                         ],
                       ),
                       Row(
                         children: [
-                          Icon(Icons.refresh, color: AppPalette.whiteColor),
+                          Icon(Icons.refresh, color: AppColors.whiteColor),
                           const SizedBox(width: 12,),
-                          DescriptionText(text: 'Updated Just Now', color: AppPalette.whiteColor),
+                          DescriptionText(text: 'Updated Just Now', color: AppColors.whiteColor),
                           const Spacer(),
                           ElevatedButton(
                             onPressed: () {},
                             style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(AppPalette.transparentColor),
-                              foregroundColor: WidgetStatePropertyAll(AppPalette.whiteColor)
+                              backgroundColor: WidgetStatePropertyAll(AppColors.transparentColor),
+                              foregroundColor: WidgetStatePropertyAll(AppColors.whiteColor)
                             ),
                             child: const Text('Sign In'),
                           )
@@ -94,7 +94,7 @@ class ImageTopButton extends StatelessWidget {
           onTap: onTap,
           child: Container(
             alignment: Alignment.center,
-            decoration: createCustomBorder(allRadius: 20, all: true, borderColor: AppPalette.primaryBorderColor),
+            decoration: createCustomBorder(allRadius: 20, all: true, borderColor: AppColors.primaryBorderColor),
             child: DescriptionText(text: text),
           ),
         ),

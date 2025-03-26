@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/classes/rect_slider_thumb_shape.dart';
-import 'app_pallete.dart';
+import 'app_colors.dart';
 
 // class AppTheme {
 //   static _border([Color color = AppPalette.borderColor]) => OutlineInputBorder(
@@ -41,7 +41,7 @@ class AppTheme {
     borderSide: BorderSide(color: color, width: 4),
   );
 
-  static textTheme(AppPaletteMain AppPalette) => TextTheme(
+  static textTheme(AppColorsMain AppPalette) => TextTheme(
     // **1. AppBar Title**
     titleLarge: TextStyle(
       color: AppPalette.primaryTextColor,
@@ -125,7 +125,7 @@ class AppTheme {
     fontWeight: FontWeight.bold,
   );
 
-  static darkMode(AppPaletteMain AppPalette) => ThemeData.dark().copyWith(
+  static darkMode(AppColorsMain AppPalette) => ThemeData.dark().copyWith(
       colorScheme: ColorScheme.dark(
         primary: AppPalette.primaryColor,
         brightness: Brightness.dark,
@@ -180,7 +180,7 @@ class AppTheme {
       ),
   );
 
-  static lightMode(AppPaletteMain AppPalette) => ThemeData.light().copyWith(
+  static lightMode(AppColorsMain AppPalette) => ThemeData.light().copyWith(
       colorScheme: ColorScheme.dark(
         primary: AppPalette.primaryColor,
         brightness: Brightness.light,

@@ -1,15 +1,10 @@
+import 'package:flutter/material.dart';
+import '../utils/extensions/hex_color.dart';
 
 // Multiple Color Flavors
-import 'package:flutter/material.dart';
+AppColorsMain AppColors = AppColorsLightTheme();
 
-import '../../configs/injector/init_dependencies.dart';
-import '../utils/extensions/hex_color.dart';
-import 'theme_provider.dart';
-
-AppPaletteMain AppPalette = AppPaletteLightTheme();
-// AppPaletteMain get AppPalette => serviceLocator<ThemeProvider>().appPalette;
-
-abstract class AppPaletteMain {
+abstract class AppColorsMain {
   Color get backgroundColor;
   Color get gradient1;
   Color get gradient2;
@@ -32,7 +27,7 @@ abstract class AppPaletteMain {
   Color get primaryButtonTextColor;
 }
 
-class AppPaletteDarkTheme implements AppPaletteMain {
+class AppColorsDarkTheme implements AppColorsMain {
   @override Color backgroundColor = Color.fromRGBO(24, 24, 32, 1);
   @override Color gradient1 = Color.fromRGBO(187, 63, 221, 1);
   @override Color gradient2 = Color.fromRGBO(251, 109, 169, 1);
@@ -56,7 +51,7 @@ class AppPaletteDarkTheme implements AppPaletteMain {
 }
 
 
-class AppPaletteLightTheme implements AppPaletteMain {
+class AppColorsLightTheme implements AppColorsMain {
   @override Color backgroundColor = Colors.white;
   @override Color gradient1 = Color.fromRGBO(187, 63, 221, 1);
   @override Color gradient2 = Color.fromRGBO(251, 109, 169, 1);

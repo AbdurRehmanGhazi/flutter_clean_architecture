@@ -6,7 +6,7 @@ import '../../../../widgets/styles/gradeint_container.dart';
 import '../../../../widgets/labels/description_text.dart';
 import '../../../../widgets/labels/title_text.dart';
 import '../../../../core/secrets/shared_preference.dart';
-import '../../../../core/theme/app_pallete.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../../rounter/app_route_utils.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -40,20 +40,20 @@ class SettingsScreen extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              TitleText(text: 'Abdul Samad', color: AppPalette.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+                              TitleText(text: 'Abdul Samad', color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
                               const Spacer(),
                               ElevatedButton(
                                 onPressed: () {},
                                 style: ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(AppPalette.transparentColor),
-                                    foregroundColor: WidgetStatePropertyAll(AppPalette.whiteColor)
+                                    backgroundColor: WidgetStatePropertyAll(AppColors.transparentColor),
+                                    foregroundColor: WidgetStatePropertyAll(AppColors.whiteColor)
                                 ),
                                 child: const Text('Edit'),
                               ),
                             ],
                           ),
-                          TitleText(text: '0335-2388222', color: AppPalette.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
-                          DescriptionText(text: 'abdursamad@gmail.com', color: AppPalette.whiteColor),
+                          TitleText(text: '0335-2388222', color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+                          DescriptionText(text: 'abdursamad@gmail.com', color: AppColors.whiteColor),
                         ],
                       ),
                     ),
@@ -76,7 +76,7 @@ class SettingsScreen extends StatelessWidget {
                     child: Container(
                       margin: const EdgeInsets.symmetric(vertical: 8,),
                       padding: const EdgeInsets.all(16),
-                      decoration: createCustomBorder(allRadius: 8, all: true, borderColor: AppPalette.primaryBorderColor),
+                      decoration: createCustomBorder(allRadius: 8, all: true, borderColor: AppColors.primaryBorderColor),
                       child: TitleText(text: options[index], fontSize: 16,),
                     ),
                   );

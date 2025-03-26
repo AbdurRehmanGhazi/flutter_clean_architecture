@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app_pallete.dart';
+import '../app_colors.dart';
 
 part 'theme_event.dart';
 part 'theme_state.dart';
@@ -60,7 +60,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     Color statusBarColor;
     Brightness statusBarIconBrightness;
     Brightness statusBarBrightness;
-    AppPaletteMain appPalette;
+    AppColorsMain appPalette;
 
     switch (mode) {
       case AppThemeMode.light:
@@ -69,7 +69,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         statusBarColor = Colors.white;
         statusBarIconBrightness = Brightness.dark;
         statusBarBrightness = Brightness.light;
-        appPalette = AppPaletteLightTheme();
+        appPalette = AppColorsLightTheme();
         break;
       case AppThemeMode.dark:
         materialMode = ThemeMode.dark;
@@ -77,7 +77,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         statusBarColor = Colors.black;
         statusBarIconBrightness = Brightness.light;
         statusBarBrightness = Brightness.dark;
-        appPalette = AppPaletteDarkTheme();
+        appPalette = AppColorsDarkTheme();
         break;
       case AppThemeMode.system:
       default:
@@ -86,7 +86,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         statusBarColor = isDark ? Colors.black : Colors.white;
         statusBarIconBrightness = isDark ? Brightness.light : Brightness.dark;
         statusBarBrightness = isDark ? Brightness.dark : Brightness.light;
-        appPalette = isDark ? AppPaletteDarkTheme() : AppPaletteLightTheme();
+        appPalette = isDark ? AppColorsDarkTheme() : AppColorsLightTheme();
         break;
     }
 

@@ -1,22 +1,22 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../core/theme/app_pallete.dart';
+import '../../core/theme/app_colors.dart';
 
 BoxDecoration customContainerBoxDecoration({double borderRadius = 10, Color? borderColor, Color? bgColor}) => BoxDecoration(
     borderRadius: BorderRadius.circular(borderRadius),
-    border: Border.all(color: borderColor ?? AppPalette.backgroundColor),
-    color: bgColor ?? AppPalette.primaryCardColor
+    border: Border.all(color: borderColor ?? AppColors.backgroundColor),
+    color: bgColor ?? AppColors.primaryCardColor
 );
 
 
 BoxDecoration customContainerBoxDecorationForTopBorderOnly() => BoxDecoration(
     borderRadius: const BorderRadius.vertical(top: Radius.circular(32.0)),
-    border: Border(top: BorderSide(color: AppPalette.primaryColor)),
-    color: AppPalette.backgroundColor);
+    border: Border(top: BorderSide(color: AppColors.primaryColor)),
+    color: AppColors.backgroundColor);
 
 BoxDecoration customContainerBoxDecorationForRightBorderOnly({double borderSize = 2.5, Color? color}) => BoxDecoration(
     borderRadius: BorderRadius.horizontal(right: Radius.circular(borderSize)),
-    color: color ?? AppPalette.primaryColor);
+    color: color ?? AppColors.primaryColor);
 
 BoxDecoration createCustomBorder({
   Color? bgColor,
@@ -34,7 +34,7 @@ BoxDecoration createCustomBorder({
   double? bottomLeftRadius,
   double? bottomRightRadius,
 }) {
-  final customBorderColor = borderColor ?? AppPalette.unselectedItemColor.withOpacity(0.4);
+  final customBorderColor = borderColor ?? AppColors.unselectedItemColor.withOpacity(0.4);
   return BoxDecoration(
     color: bgColor,
     border: Border(

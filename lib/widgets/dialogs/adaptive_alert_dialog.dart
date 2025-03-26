@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../core/theme/app_pallete.dart';
+import '../../core/theme/app_colors.dart';
 
 class AdaptiveAlertDialog extends StatelessWidget {
   final String title;
@@ -38,7 +38,7 @@ class AdaptiveAlertDialog extends StatelessWidget {
       content: Text(content),
       actions: [
         CupertinoDialogAction(
-          child: Text(noButtonTitle, style: TextStyle(color: AppPalette.warningColor)),
+          child: Text(noButtonTitle, style: TextStyle(color: AppColors.warningColor)),
           onPressed: () {
             Navigator.of(context).pop();
             onNoPressed();
@@ -58,8 +58,8 @@ class AdaptiveAlertDialog extends StatelessWidget {
   // Material (Android-style) AlertDialog
   Widget _buildMaterialDialog(BuildContext context) {
     return AlertDialog(
-      title: Text(title, style: TextStyle(color: AppPalette.primaryTextColor)),
-      content: Text(content, style: TextStyle(color: AppPalette.primaryTextColor)),
+      title: Text(title, style: TextStyle(color: AppColors.primaryTextColor)),
+      content: Text(content, style: TextStyle(color: AppColors.primaryTextColor)),
       actions: [
         TextButton(
           onPressed: () {

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'configs/injector/init_dependencies.dart';
-import 'core/theme/app_pallete.dart';
+import 'core/theme/app_colors.dart';
 import 'core/theme/theme.dart';
 import 'core/theme/theme_bloc/theme_bloc.dart';
 import 'main.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 
     return BlocConsumer<ThemeBloc, ThemeState>(
       listener: (context, state) {
-        AppPalette = state.appPalette;
+        AppColors = state.appPalette;
       },
       builder: (context, state) {
         return MaterialApp.router(
@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           themeMode: state.materialThemeMode, // context.watch<ThemeProvider>().lightOrDarkMode,
-          theme: AppTheme.lightMode(AppPalette),
-          darkTheme: AppTheme.darkMode(AppPalette),
+          theme: AppTheme.lightMode(AppColors),
+          darkTheme: AppTheme.darkMode(AppColors),
           routerConfig: router,
         );
       },
