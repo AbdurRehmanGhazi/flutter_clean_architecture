@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class DescriptionText extends StatelessWidget {
   final String? text;
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
   final TextAlign? textAlign;
   final Color? color;
   final double? fontSize;
@@ -11,9 +11,9 @@ class DescriptionText extends StatelessWidget {
   const DescriptionText({
     super.key,
     required this.text,
-    this.fontWeight = FontWeight.w400,
+    this.fontWeight,
     this.textAlign,
-    this.fontSize = 14,
+    this.fontSize,
     this.overflow = TextOverflow.ellipsis,
     this.color,
   });
@@ -23,7 +23,7 @@ class DescriptionText extends StatelessWidget {
     return Text(text ?? "",
         textAlign: textAlign,
         overflow: overflow,
-        style: TextStyle(
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
           fontSize: fontSize,
           fontWeight: fontWeight,
           color: color,

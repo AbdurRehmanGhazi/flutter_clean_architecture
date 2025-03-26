@@ -33,26 +33,26 @@ class DashboardScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const TitleText(text: 'Save Kro'),
+                      TitleText(text: 'Save Kro', color: AppPalette.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
                       const SizedBox(height: 8,),
-                      const DescriptionText(text: 'Current Balance'),
-                      const Row(
+                      DescriptionText(text: 'Current Balance', color: AppPalette.whiteColor),
+                      Row(
                         children: [
-                          TitleText(text: 'Rs. 23,222.00 ', weight: FontWeight.bold,),
-                          Icon(Icons.keyboard_arrow_right_rounded),
+                          TitleText(text: 'Rs. 23,222.00 ', color: AppPalette.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+                          Icon(Icons.keyboard_arrow_right_rounded, color: AppPalette.whiteColor),
                         ],
                       ),
                       Row(
                         children: [
-                          const Icon(Icons.refresh),
+                          Icon(Icons.refresh, color: AppPalette.whiteColor),
                           const SizedBox(width: 12,),
-                          const DescriptionText(text: 'Updated Just Now'),
+                          DescriptionText(text: 'Updated Just Now', color: AppPalette.whiteColor),
                           const Spacer(),
                           ElevatedButton(
                             onPressed: () {},
                             style: ButtonStyle(
                               backgroundColor: WidgetStatePropertyAll(AppPalette.transparentColor),
-                              foregroundColor: WidgetStatePropertyAll(AppPalette.primaryTextColor)
+                              foregroundColor: WidgetStatePropertyAll(AppPalette.whiteColor)
                             ),
                             child: const Text('Sign In'),
                           )

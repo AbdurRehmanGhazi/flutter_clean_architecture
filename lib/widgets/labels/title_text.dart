@@ -4,7 +4,7 @@ class TitleText extends StatelessWidget {
   final String? text;
   final Color? color;
   final TextAlign? align;
-  final FontWeight? weight;
+  final FontWeight? fontWeight;
   final double? fontSize;
 
   const TitleText({
@@ -12,17 +12,17 @@ class TitleText extends StatelessWidget {
     required this.text,
     this.color,
     this.align,
-    this.weight = FontWeight.w400,
-    this.fontSize= 18
+    this.fontWeight,
+    this.fontSize,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(text ?? '',
         textAlign: align,
-        style: TextStyle(
+        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
           fontSize: fontSize,
-          fontWeight: weight,
+          fontWeight: fontWeight,
           color: color,
         ));
   }

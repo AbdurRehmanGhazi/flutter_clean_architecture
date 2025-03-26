@@ -23,6 +23,7 @@ abstract class AppPaletteMain {
   Color get unselectedItemColor;
   Color get secondaryBackgroundColor;
   Color get primaryTextColor;
+  Color get secondaryTextColor;
   Color get textFieldTitleColor;
   Color get textFieldHintColor;
   Color get textFieldBGColor;
@@ -43,8 +44,9 @@ class AppPaletteDarkTheme implements AppPaletteMain {
   @override Color primaryColor = Color.fromRGBO(251, 109, 169, 1);
   @override Color selectedItemColor = Color.fromRGBO(251, 109, 169, 1);
   @override Color unselectedItemColor = HexColor.fromHex("9095A0");
-  @override Color secondaryBackgroundColor = HexColor.fromHex("171A1F");
+  @override Color secondaryBackgroundColor = HexColor.fromHex("ffffff");
   @override Color primaryTextColor = HexColor.fromHex("FFFFFF");
+  @override Color secondaryTextColor = HexColor.fromHex("000000");
   @override Color textFieldTitleColor = HexColor.fromHex("000000").withOpacity(0.87);
   @override Color textFieldHintColor = HexColor.fromHex("000C08");
   @override Color textFieldBGColor = HexColor.fromHex("FFFFFF");
@@ -66,8 +68,9 @@ class AppPaletteLightTheme implements AppPaletteMain {
   @override Color primaryColor = Color.fromRGBO(251, 109, 169, 1);
   @override Color selectedItemColor = Color.fromRGBO(251, 109, 169, 1);
   @override Color unselectedItemColor = HexColor.fromHex("9095A0");
-  @override Color secondaryBackgroundColor = HexColor.fromHex("171A1F");
+  @override Color secondaryBackgroundColor = HexColor.fromHex("000000");
   @override Color primaryTextColor = HexColor.fromHex("000000");
+  @override Color secondaryTextColor = HexColor.fromHex("FFFFFF");
   @override Color textFieldTitleColor = HexColor.fromHex("000000").withOpacity(0.87);
   @override Color textFieldHintColor = HexColor.fromHex("000C08");
   @override Color textFieldBGColor = HexColor.fromHex("f5f5f5");

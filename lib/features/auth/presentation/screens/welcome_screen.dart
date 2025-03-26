@@ -9,6 +9,7 @@ import 'package:flutter_clean_architecture/core/theme/theme_bloc/theme_bloc.dart
 import 'package:flutter_clean_architecture/translations/locale_keys.g.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/native_classes/langugage_manager.dart';
+import '../../../../widgets/buttons/primary_button.dart';
 import '../../../../widgets/classes/custom_page_route.dart';
 import '../../../../widgets/labels/description_text.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
@@ -41,26 +42,26 @@ class _WelcomeView extends StatelessWidget {
   _getLocaleButtons(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ElevatedButton(
+          PrimaryButton(
             onPressed: () async {
               await context.setLocale(englishLocale);
               if (Platform.isIOS) await LanguageManager.setPreferredLanguage(englishLanguageCode);
             },
-            child: DescriptionText(text: 'English'),
+            buttonText: 'English',
           ),
-          ElevatedButton(
+          PrimaryButton(
             onPressed: () async {
               await context.setLocale(somaliaLocale);
               if (Platform.isIOS) await LanguageManager.setPreferredLanguage(somaliaLanguageCode);
             },
-            child: DescriptionText(text: 'Somali'),
+            buttonText: 'Somali',
           ),
-          ElevatedButton(
+          PrimaryButton(
             onPressed: () async {
               await context.setLocale(arabicLocale);
               if (Platform.isIOS) await LanguageManager.setPreferredLanguage(arabicLanguageCode);
             },
-            child: DescriptionText(text: 'Arabic'),
+            buttonText: 'Arabic',
           )
         ],
       );
@@ -73,23 +74,23 @@ class _WelcomeView extends StatelessWidget {
         runSpacing: 16,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ElevatedButton(
-            onPressed: () async {
+          PrimaryButton(
+            onPressed: () {
               context.read<ThemeBloc>().add(SetThemeEvent(AppThemeMode.system));
             },
-            child: DescriptionText(text: 'System Mode'),
+            buttonText: 'System Mode',
           ),
-          ElevatedButton(
-            onPressed: () async {
+          PrimaryButton(
+            onPressed: () {
               context.read<ThemeBloc>().add(SetThemeEvent(AppThemeMode.light));
             },
-            child: DescriptionText(text: 'Light Mode'),
+            buttonText: 'Light Mode',
           ),
-          ElevatedButton(
-            onPressed: () async {
+          PrimaryButton(
+            onPressed: () {
               context.read<ThemeBloc>().add(SetThemeEvent(AppThemeMode.dark));
             },
-            child: DescriptionText(text: 'Dark Mode'),
+            buttonText: 'Dark Mode',
           ),
         ],
       ),
@@ -108,7 +109,7 @@ class _WelcomeView extends StatelessWidget {
             child: Column(children: [
               const GradientIcon(icon: Icons.data_saver_off, size: 120,),
               const SizedBox(height: 16),
-              TitleText(text: LocaleKeys.welcomeToSaveKaro.tr(), fontSize: 24,),
+              TitleText(text: LocaleKeys.welcomeToSaveKaro.tr()),
               const SizedBox(height: 8),
               DescriptionText(text: LocaleKeys.easySaveYourMoney.tr()),
               const SizedBox(height: 60),

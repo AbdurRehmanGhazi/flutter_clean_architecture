@@ -128,8 +128,6 @@ class _CustomOtpFieldState extends State<CustomOtpField> {
                   submittedPinTheme: defaultPinTheme.copyWith(
                     width: (constraints.maxWidth / widget.numberOfFields),
                     decoration: defaultPinTheme.decoration!.copyWith(
-                      color: Colors.white,
-                      // Keep the box color white after submission
                       border: Border(
                         bottom: BorderSide(
                             color: borderColor, width: bottomBorderWidth),

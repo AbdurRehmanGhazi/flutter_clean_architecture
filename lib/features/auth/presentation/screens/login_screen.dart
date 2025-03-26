@@ -69,7 +69,7 @@ class _LoginView extends StatelessWidget {
                     children: [
                       const GradientIcon(icon: Icons.mobile_friendly, size: 120),
                       const SizedBox(height: 16),
-                      const TitleText(text: 'Enter your Mobile Number', fontSize: 24),
+                      const TitleText(text: 'Enter your Mobile Number'),
                       const SizedBox(height: 32),
                       CustomTextField(
                           textEditingController: mobileNumberController,

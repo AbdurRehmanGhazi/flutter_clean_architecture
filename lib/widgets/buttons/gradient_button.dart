@@ -33,19 +33,16 @@ class GradientButton extends StatelessWidget {
       ),
       child: isLoading ? Loader() : ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
+        style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
           // fixedSize: const Size(395, 55),
-          backgroundColor: AppPalette.transparentColor,
-          shadowColor: AppPalette.transparentColor,
-        ),
-        child: Text(
-          buttonText,
-          style: TextStyle(
+          backgroundColor: WidgetStatePropertyAll(AppPalette.transparentColor),
+          shadowColor: WidgetStatePropertyAll(AppPalette.transparentColor),
+          textStyle: WidgetStatePropertyAll(TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
-            color: AppPalette.whiteColor,
-          ),
+          ))
         ),
+        child: Text(buttonText),
       ),
     );
   }

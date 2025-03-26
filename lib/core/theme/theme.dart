@@ -42,21 +42,82 @@ class AppTheme {
   );
 
   static textTheme(AppPaletteMain AppPalette) => TextTheme(
-    bodyLarge: TextStyle(color: AppPalette.textFieldTitleColor, fontFamily: customFontFamily),
-    bodyMedium: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
-    // displayLarge: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // displayMedium: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // displaySmall: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // headlineLarge: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // headlineMedium: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // headlineSmall: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // titleLarge: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // titleMedium: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // titleSmall: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // bodySmall: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    labelLarge: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
-    // labelMedium: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
-    // labelSmall: TextStyle(color: AppPallete.primaryTextColor, fontFamily: customFontFamily),
+    // **1. AppBar Title**
+    titleLarge: TextStyle(
+      color: AppPalette.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    ),
+
+    // **2. Main Page Titles (Big Titles)**
+    headlineLarge: TextStyle(
+      color: AppPalette.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 24,
+      fontWeight: FontWeight.w400,
+    ),
+
+    // **3. Section Titles (Card Titles, Headers)**
+    titleMedium: TextStyle(
+      color: AppPalette.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 18,
+      fontWeight: FontWeight.w600,
+    ),
+
+    // **4. TextField (Normal Content, Paragraphs)**
+    bodyLarge: TextStyle(
+      color: AppPalette.textFieldTitleColor,
+      fontFamily: customFontFamily,
+      fontSize: 16,
+      fontWeight: FontWeight.normal,
+    ),
+
+    // **4. Body Text (Normal Content, Paragraphs)**
+    bodyMedium: TextStyle(
+      color: AppPalette.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 14,
+      fontWeight: FontWeight.normal,
+    ),
+
+    // **6. Labels (Tags, Chips, Small Labels)**
+    labelLarge: TextStyle(
+      color: AppPalette.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+    ),
+
+    labelMedium: TextStyle(
+      color: AppPalette.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 12,
+      fontWeight: FontWeight.w500,
+    ),
+
+    labelSmall: TextStyle(
+      color: AppPalette.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+    ),
+    // titleLarge: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    // titleMedium: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    titleSmall: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    displayLarge: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    displayMedium: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    displaySmall: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    // headlineLarge: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    headlineMedium: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    headlineSmall: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    // bodyLarge: TextStyle(color: AppPalette.textFieldTitleColor, fontFamily: customFontFamily),
+    // bodyMedium: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    bodySmall: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    // labelLarge: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    // labelMedium: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
+    // labelSmall: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
   );
 
   static const titleStyle = TextStyle(
@@ -75,19 +136,19 @@ class AppTheme {
         surfaceTintColor: Colors.transparent, // Prevents color changes on scroll
         elevation: 0,
         titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppPalette.primaryTextColor,),
-        systemOverlayStyle: SystemUiOverlayStyle( // Setting status bar icons color for iPhone X and older
-          statusBarColor: AppPalette.backgroundColor,
-          systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
-          statusBarIconBrightness: Brightness.light, // For Android status bar text color
-          statusBarBrightness: Brightness.dark, // For iOS status bar text color
-        ),
-        iconTheme: IconThemeData(color: AppPalette.primaryTextColor),
-        shape: Border(
-          bottom: BorderSide(
-            color: AppPalette.secondaryBackgroundColor, // Line color
-            width: 2, // Line thickness
-          ),
-        ),// Light icons for AppBar
+        // systemOverlayStyle: SystemUiOverlayStyle( // Setting status bar icons color for iPhone X and older
+        //   statusBarColor: AppPalette.backgroundColor,
+        //   systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
+        //   statusBarIconBrightness: Brightness.light, // For Android status bar text color
+        //   statusBarBrightness: Brightness.dark, // For iOS status bar text color
+        // ),
+        iconTheme: IconThemeData(color: AppPalette.primaryTextColor), // Light icons for AppBar
+        // shape: Border(
+        //   bottom: BorderSide(
+        //     color: AppPalette.secondaryBackgroundColor, // Line color
+        //     width: 1, // Line thickness
+        //   ),
+        // ),
       ),
       textTheme: textTheme(AppPalette),
       sliderTheme: SliderThemeData(
@@ -100,7 +161,7 @@ class AppTheme {
         filled: true,
         fillColor: AppPalette.textFieldBGColor,
         labelStyle: TextStyle(color: AppPalette.textFieldHintColor),
-        // hintStyle: TextStyle(color: AppPallete.warningColor),
+        // hintStyle: TextStyle(color: AppPalette.warningColor),
         enabledBorder: _border(color: AppPalette.primaryBorderColor),
         focusedBorder: _border(color: AppPalette.primaryBorderColor),
         disabledBorder: _border(color: AppPalette.primaryBorderColor),
@@ -110,7 +171,11 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppPalette.gradient2, // Set default background color
-          foregroundColor: AppPalette.primaryTextColor, // Text color
+          foregroundColor: AppPalette.whiteColor, // Text color
+          textStyle: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
   );
@@ -126,19 +191,19 @@ class AppTheme {
         surfaceTintColor: Colors.transparent, // Prevents color changes on scroll
         elevation: 0,
         titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppPalette.primaryTextColor,),
-        systemOverlayStyle: SystemUiOverlayStyle( // Setting status bar icons color for iPhone X and older
-          statusBarColor: AppPalette.backgroundColor,
-          systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
-          statusBarIconBrightness: Brightness.dark, // For Android status bar text color
-          statusBarBrightness: Brightness.light, // For iOS status bar text color
-        ),
-        iconTheme: IconThemeData(color: AppPalette.primaryTextColor),
-        shape: Border(
-          bottom: BorderSide(
-            color: AppPalette.secondaryBackgroundColor, // Line color
-            width: 2, // Line thickness
-          ),
-        ),// Light icons for AppBar
+        // systemOverlayStyle: SystemUiOverlayStyle( // Setting status bar icons color for iPhone X and older
+        //   statusBarColor: AppPalette.backgroundColor,
+        //   systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
+        //   statusBarIconBrightness: Brightness.dark, // For Android status bar text color
+        //   statusBarBrightness: Brightness.light, // For iOS status bar text color
+        // ),
+        iconTheme: IconThemeData(color: AppPalette.primaryTextColor), // Light icons for AppBar
+        // shape: Border(
+        //   bottom: BorderSide(
+        //     color: AppPalette.secondaryBackgroundColor, // Line color
+        //     width: 2, // Line thickness
+        //   ),
+        // ),
       ),
       textTheme: textTheme(AppPalette),
       sliderTheme: SliderThemeData(
@@ -151,7 +216,7 @@ class AppTheme {
         filled: true,
         fillColor: AppPalette.textFieldBGColor,
         labelStyle: TextStyle(color: AppPalette.textFieldHintColor),
-        // hintStyle: TextStyle(color: AppPallete.warningColor),
+        // hintStyle: TextStyle(color: AppPalette.warningColor),
         enabledBorder: _border(color: AppPalette.primaryBorderColor),
         focusedBorder: _border(color: AppPalette.primaryBorderColor),
         disabledBorder: _border(color: AppPalette.primaryBorderColor),
@@ -161,7 +226,11 @@ class AppTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppPalette.gradient3, // Set default background color
-          foregroundColor: AppPalette.primaryTextColor, // Text color
+          foregroundColor: AppPalette.whiteColor, // Text color
+          textStyle: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
   );
