@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/app.dart';
 import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import '../loader.dart';
 
 
@@ -31,7 +33,7 @@ class PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(6),
           side: BorderSide(color: isEnable ? AppColors.primaryColor : AppColors.unselectedItemColor),
         )),
-        minimumSize: WidgetStatePropertyAll(Size(double.minPositive, height)), // Full width with defined height
+        minimumSize: WidgetStatePropertyAll(Size(double.minPositive, height.sdp)), // Full width with defined height
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -43,8 +45,8 @@ class PrimaryButton extends StatelessWidget {
           if (isLoading)
             Positioned(
               child: SizedBox(
-                height: height * 0.6,
-                width: height * 0.6,
+                height: height.sdp * 0.6,
+                width: height.sdp * 0.6,
                 child: const Loader(),
               ),
             ),

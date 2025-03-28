@@ -1,22 +1,19 @@
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/core/constants/list_translation_locale.dart';
-import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
-import 'package:flutter_clean_architecture/core/theme/theme_bloc/theme_bloc.dart';
-import 'package:flutter_clean_architecture/translations/locale_keys.g.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/constants/list_translation_locale.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/theme_bloc/theme_bloc.dart';
+import '../../../../translations/locale_keys.g.dart';
 import '../../../../core/utils/native_classes/langugage_manager.dart';
 import '../../../../widgets/buttons/primary_button.dart';
-import '../../../../widgets/classes/custom_page_route.dart';
+import '../../../../core/utils/sdp.dart';
 import '../../../../widgets/labels/description_text.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
 import '../../../../widgets/gradient_icon.dart';
 import '../../../../widgets/labels/title_text.dart';
-import '../../../../features/auth/presentation/screens/mobile_number_verification_screen.dart';
-import '../../../../rounter/app_route_config.dart';
 import '../../../../rounter/app_route_utils.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -70,8 +67,8 @@ class _WelcomeView extends StatelessWidget {
     children: [
       Wrap(
         direction: Axis.horizontal,
-        spacing: 16,
-        runSpacing: 16,
+        spacing: 16.sdp,
+        runSpacing: 16.sdp,
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           PrimaryButton(
@@ -94,33 +91,35 @@ class _WelcomeView extends StatelessWidget {
           ),
         ],
       ),
-      SizedBox(height: 16,),
-      Icon(context.watch<ThemeBloc>().state.themeIcon, size: 32, color: AppColors.primaryTextColor,)
+      SizedBox(height: 16.sdp,),
+      Icon(context.watch<ThemeBloc>().state.themeIcon, size: 32.sdp, color: AppColors.primaryTextColor,)
     ],
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(children: [
-              const GradientIcon(icon: Icons.data_saver_off, size: 120,),
-              const SizedBox(height: 16),
-              TitleText(text: LocaleKeys.welcomeToSaveKaro.tr()),
-              const SizedBox(height: 8),
-              DescriptionText(text: LocaleKeys.easySaveYourMoney.tr()),
-              const SizedBox(height: 60),
-              GradientButton(buttonText: LocaleKeys.signUp.tr(), onPressed: () => _navToMobileNumberVerificationScreen(context)),
-              const SizedBox(height: 24),
-              GradientButton(buttonText: LocaleKeys.login.tr(), onPressed: () => _navToLoginScreen(context)),
-              SizedBox(height: 32),
-              _getLocaleButtons(context),
-              SizedBox(height: 16),
-              _getThemeButtons(context)
-              ],),
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(16.sdp),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(children: [
+                GradientIcon(icon: Icons.data_saver_off, size: 120),
+                SizedBox(height: 16.sdp),
+                TitleText(text: LocaleKeys.welcomeToSaveKaro.tr()),
+                SizedBox(height: 8.sdp),
+                DescriptionText(text: LocaleKeys.easySaveYourMoney.tr()),
+                SizedBox(height: 60.sdp),
+                GradientButton(buttonText: LocaleKeys.signUp.tr(), onPressed: () => _navToMobileNumberVerificationScreen(context)),
+                SizedBox(height: 24.sdp),
+                GradientButton(buttonText: LocaleKeys.login.tr(), onPressed: () => _navToLoginScreen(context)),
+                SizedBox(height: 32.sdp),
+                _getLocaleButtons(context),
+                SizedBox(height: 16.sdp),
+                _getThemeButtons(context)
+                ],),
+            ),
           ),
         ),
       ),

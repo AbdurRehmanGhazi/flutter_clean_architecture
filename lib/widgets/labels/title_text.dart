@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
 
 class TitleText extends StatelessWidget {
   final String? text;
@@ -16,14 +17,27 @@ class TitleText extends StatelessWidget {
     this.fontSize,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Text(text ?? '',
+  Text _getTextWidget(BuildContext context) => Text(
+        text ?? '',
         textAlign: align,
         style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          color: color,
-        ));
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+              color: color,
+            ),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return color != null
+        ? _getTextWidget(context)
+        : ShaderMask(
+            shaderCallback: (Rect bounds) => LinearGradient(
+              colors: [AppColors.gradient1, AppColors.gradient2],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ).createShader(bounds),
+            child: _getTextWidget(context),
+          );
   }
 }

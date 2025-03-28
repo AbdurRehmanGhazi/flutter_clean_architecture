@@ -6,7 +6,7 @@ class HyperlinkText extends StatelessWidget {
     required this.text,
     this.fontWeight = FontWeight.w500,
     this.textAlign,
-    this.fontSize = 14,
+    this.fontSize,
     this.isEnable = true,
     this.showIndicator = false,
     this.color,
@@ -32,7 +32,7 @@ class HyperlinkText extends StatelessWidget {
         children: [
           Text(text ?? "",
               textAlign: textAlign,
-              style: TextStyle(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontSize: fontSize,
                   fontWeight: fontWeight,
                   color: color,

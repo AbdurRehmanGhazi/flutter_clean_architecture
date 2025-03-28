@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../widgets/textfields/custom_otp_field.dart';
 import '../../../../widgets/textfields/custom_text_field.dart';
@@ -70,37 +71,39 @@ class _RegistrationViewState extends State<RegistrationView> {
     },
     builder: (context, state) {
       return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Form(
-                key: formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(children: [
-                  const GradientIcon(icon: Icons.app_registration, size: 120,),
-                  const SizedBox(height: 16),
-                  const TitleText(text: 'Registration'),
-                  const SizedBox(height: 32),
-                  CustomTextField(
-                      textEditingController: nameController, hintText: 'Name'),
-                  const SizedBox(height: 32),
-                  CustomOtpField(
-                    numberOfFields: 4,
-                    onChange: (code) {
-                      _pinCode = '';
-                    },
-                    onSubmit: (code) {
-                      _pinCode = code;
-                    },
-                  ),
-                  const SizedBox(height: 32),
-                  GradientButton(
-                    isLoading: state is RegistrationLoading ? state.isLoading : false,
-                    buttonText: 'Send',
-                    onPressed: () => _navToMobileNumberVerificationScreen(context),
-                  ),
-                ],),
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(32.sdp),
+            child: Center(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Column(children: [
+                    const GradientIcon(icon: Icons.app_registration, size: 120),
+                    SizedBox(height: 16.sdp),
+                    const TitleText(text: 'Registration'),
+                    SizedBox(height: 32.sdp),
+                    CustomTextField(
+                        textEditingController: nameController, hintText: 'Name'),
+                    SizedBox(height: 32.sdp),
+                    CustomOtpField(
+                      numberOfFields: 4,
+                      onChange: (code) {
+                        _pinCode = '';
+                      },
+                      onSubmit: (code) {
+                        _pinCode = code;
+                      },
+                    ),
+                    SizedBox(height: 32.sdp),
+                    GradientButton(
+                      isLoading: state is RegistrationLoading ? state.isLoading : false,
+                      buttonText: 'Send',
+                      onPressed: () => _navToMobileNumberVerificationScreen(context),
+                    ),
+                  ],),
+                ),
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../widgets/classes/custom_page_route.dart';
 import '../../../../widgets/styles/custom_container_box_decoration.dart';
@@ -26,26 +27,26 @@ class DashboardScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16),
+            padding: EdgeInsets.symmetric(vertical: 8.sdp, horizontal: 16.sdp),
             child: Column(
               children: [
                 GradientContainer(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      TitleText(text: 'Save Kro', color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
-                      const SizedBox(height: 8,),
+                      TitleText(text: 'Save Kro', color: AppColors.whiteColor, fontSize: 16.sdp, fontWeight: FontWeight.bold),
+                      SizedBox(height: 8.sdp),
                       DescriptionText(text: 'Current Balance', color: AppColors.whiteColor),
                       Row(
                         children: [
-                          TitleText(text: 'Rs. 23,222.00 ', color: AppColors.whiteColor, fontSize: 16, fontWeight: FontWeight.bold),
+                          TitleText(text: 'Rs. 23,222.00 ', color: AppColors.whiteColor, fontSize: 16.sdp, fontWeight: FontWeight.bold),
                           Icon(Icons.keyboard_arrow_right_rounded, color: AppColors.whiteColor),
                         ],
                       ),
                       Row(
                         children: [
                           Icon(Icons.refresh, color: AppColors.whiteColor),
-                          const SizedBox(width: 12,),
+                          SizedBox(width: 12.sdp),
                           DescriptionText(text: 'Updated Just Now', color: AppColors.whiteColor),
                           const Spacer(),
                           ElevatedButton(
@@ -61,13 +62,13 @@ class DashboardScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 24),
+                SizedBox(height: 24.sdp),
                 Row(
                   children: [
                     ImageTopButton(text: 'Send Money', onTap: (){}),
-                    SizedBox(width: 16),
+                    SizedBox(width: 16.sdp),
                     ImageTopButton(text: 'Add Money', onTap: (){}),
-                    SizedBox(width: 16),
+                    SizedBox(width: 16.sdp),
                     ImageTopButton(text: 'Withdrawal', onTap: (){})
                   ],
                 )

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/classes/rect_slider_thumb_shape.dart';
 import 'app_colors.dart';
@@ -46,23 +47,23 @@ class AppTheme {
     titleLarge: TextStyle(
       color: AppPalette.primaryTextColor,
       fontFamily: customFontFamily,
-      fontSize: 20,
+      fontSize: 20.sdp,
       fontWeight: FontWeight.bold,
     ),
 
     // **2. Main Page Titles (Big Titles)**
     headlineLarge: TextStyle(
-      color: AppPalette.primaryTextColor,
+      // color: AppPalette.primaryTextColor,
       fontFamily: customFontFamily,
-      fontSize: 24,
-      fontWeight: FontWeight.w400,
+      fontSize: 28.sdp,
+      fontWeight: FontWeight.w500,
     ),
 
     // **3. Section Titles (Card Titles, Headers)**
     titleMedium: TextStyle(
       color: AppPalette.primaryTextColor,
       fontFamily: customFontFamily,
-      fontSize: 18,
+      fontSize: 18.sdp,
       fontWeight: FontWeight.w600,
     ),
 
@@ -70,7 +71,7 @@ class AppTheme {
     bodyLarge: TextStyle(
       color: AppPalette.textFieldTitleColor,
       fontFamily: customFontFamily,
-      fontSize: 16,
+      fontSize: 16.sdp,
       fontWeight: FontWeight.normal,
     ),
 
@@ -78,7 +79,7 @@ class AppTheme {
     bodyMedium: TextStyle(
       color: AppPalette.primaryTextColor,
       fontFamily: customFontFamily,
-      fontSize: 14,
+      fontSize: 14.sdp,
       fontWeight: FontWeight.normal,
     ),
 
@@ -86,21 +87,21 @@ class AppTheme {
     labelLarge: TextStyle(
       color: AppPalette.primaryTextColor,
       fontFamily: customFontFamily,
-      fontSize: 14,
+      fontSize: 14.sdp,
       fontWeight: FontWeight.w500,
     ),
 
     labelMedium: TextStyle(
       color: AppPalette.primaryTextColor,
       fontFamily: customFontFamily,
-      fontSize: 12,
+      fontSize: 12.sdp,
       fontWeight: FontWeight.w500,
     ),
 
     labelSmall: TextStyle(
       color: AppPalette.primaryTextColor,
       fontFamily: customFontFamily,
-      fontSize: 10,
+      fontSize: 10.sdp,
       fontWeight: FontWeight.w400,
     ),
     // titleLarge: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
@@ -120,11 +121,6 @@ class AppTheme {
     // labelSmall: TextStyle(color: AppPalette.primaryTextColor, fontFamily: customFontFamily),
   );
 
-  static const titleStyle = TextStyle(
-    fontSize: 36,
-    fontWeight: FontWeight.bold,
-  );
-
   static darkMode(AppColorsMain AppPalette) => ThemeData.dark().copyWith(
       colorScheme: ColorScheme.dark(
         primary: AppPalette.primaryColor,
@@ -135,7 +131,7 @@ class AppTheme {
         backgroundColor: AppPalette.backgroundColor,
         surfaceTintColor: Colors.transparent, // Prevents color changes on scroll
         elevation: 0,
-        titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppPalette.primaryTextColor,),
+        titleTextStyle: TextStyle(fontSize: 16.sdp, fontWeight: FontWeight.w400, color: AppPalette.primaryTextColor,),
         // systemOverlayStyle: SystemUiOverlayStyle( // Setting status bar icons color for iPhone X and older
         //   statusBarColor: AppPalette.backgroundColor,
         //   systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
@@ -151,6 +147,17 @@ class AppTheme {
         // ),
       ),
       textTheme: textTheme(AppPalette),
+      cardColor: AppPalette.primaryCardColor,
+      cardTheme: CardTheme(
+          color: AppPalette.primaryCardColor, // Light mode card color
+          shadowColor: AppPalette.primaryShadowColor,
+          elevation: 4,
+          clipBehavior: Clip.hardEdge,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(color: AppPalette.borderColor.withAlpha(40), width: 1)
+          )
+      ),
       sliderTheme: SliderThemeData(
         overlayShape: SliderComponentShape.noOverlay,
         trackShape: const RectangularSliderTrackShape(),
@@ -173,8 +180,8 @@ class AppTheme {
           backgroundColor: AppPalette.gradient2, // Set default background color
           foregroundColor: AppPalette.whiteColor, // Text color
           textStyle: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
+            fontSize: 14.sdp,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),
@@ -190,7 +197,7 @@ class AppTheme {
         backgroundColor: AppPalette.backgroundColor,
         surfaceTintColor: Colors.transparent, // Prevents color changes on scroll
         elevation: 0,
-        titleTextStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: AppPalette.primaryTextColor,),
+        titleTextStyle: TextStyle(fontSize: 16.sdp, fontWeight: FontWeight.w400, color: AppPalette.primaryTextColor,),
         // systemOverlayStyle: SystemUiOverlayStyle( // Setting status bar icons color for iPhone X and older
         //   statusBarColor: AppPalette.backgroundColor,
         //   systemNavigationBarColor: AppPalette.backgroundColor, // navigation bar color
@@ -206,6 +213,17 @@ class AppTheme {
         // ),
       ),
       textTheme: textTheme(AppPalette),
+      cardColor: AppPalette.primaryCardColor,
+      cardTheme: CardTheme(
+        color: AppPalette.primaryCardColor, // Light mode card color
+        shadowColor: AppPalette.primaryShadowColor,
+        elevation: 4,
+        clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: AppPalette.borderColor.withAlpha(40), width: 1)
+        )
+      ),
       sliderTheme: SliderThemeData(
         overlayShape: SliderComponentShape.noOverlay,
         trackShape: const RectangularSliderTrackShape(),
@@ -225,11 +243,11 @@ class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppPalette.gradient3, // Set default background color
+          backgroundColor: AppPalette.gradient2, // Set default background color
           foregroundColor: AppPalette.whiteColor, // Text color
           textStyle: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
+            fontSize: 14.sdp,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

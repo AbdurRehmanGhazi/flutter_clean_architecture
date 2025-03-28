@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../widgets/textfields/custom_text_field.dart';
@@ -58,36 +59,38 @@ class _LoginView extends StatelessWidget {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: SingleChildScrollView(
-                child: Form(
-                  key: formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: Column(
-                    children: [
-                      const GradientIcon(icon: Icons.mobile_friendly, size: 120),
-                      const SizedBox(height: 16),
-                      const TitleText(text: 'Enter your Mobile Number'),
-                      const SizedBox(height: 32),
-                      CustomTextField(
-                          textEditingController: mobileNumberController,
-                          isNumericField: true,
-                          hintText: 'Mobile Number'),
-                      const SizedBox(height: 16),
-                      CustomTextField(
-                          textEditingController: pinController,
-                          isNumericField: true,
-                          isPasswordField: true,
-                          isPinField: true,
-                          hintText: 'PIN'),
-                      const SizedBox(height: 32),
-                      GradientButton(
-                          isLoading: state is LoginLoading ? state.isLoading : false,
-                          buttonText: 'Send',
-                          onPressed: () => _validateInputs(context))
-                    ],
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(16.sdp),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: formKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: Column(
+                      children: [
+                        const GradientIcon(icon: Icons.mobile_friendly, size: 120),
+                        SizedBox(height: 16.sdp),
+                        const TitleText(text: 'Enter your Mobile Number'),
+                        SizedBox(height: 32.sdp),
+                        CustomTextField(
+                            textEditingController: mobileNumberController,
+                            isNumericField: true,
+                            hintText: 'Mobile Number'),
+                        SizedBox(height: 16.sdp),
+                        CustomTextField(
+                            textEditingController: pinController,
+                            isNumericField: true,
+                            isPasswordField: true,
+                            isPinField: true,
+                            hintText: 'PIN'),
+                        SizedBox(height: 32.sdp),
+                        GradientButton(
+                            isLoading: state is LoginLoading ? state.isLoading : false,
+                            buttonText: 'Send',
+                            onPressed: () => _validateInputs(context))
+                      ],
+                    ),
                   ),
                 ),
               ),

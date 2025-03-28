@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/app.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import '../core/theme/app_colors.dart';
 
 class GradientIcon extends StatelessWidget {
@@ -22,7 +24,7 @@ class GradientIcon extends StatelessWidget {
       },
       child: Icon(
         icon,
-        size: size,
+        size: size?.sdp,
         color: Colors.white, // Must be white for ShaderMask to work
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_clean_architecture/app.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../core/theme/app_colors.dart';
@@ -52,9 +54,9 @@ class _CustomOtpFieldState extends State<CustomOtpField> {
 
     final defaultPinTheme = PinTheme(
       width: 56,
-      height: 56,
+      height: 56.sdp,
       textStyle: TextStyle(
-        fontSize: 22,
+        fontSize: 22.sdp,
         color: AppColors.textFieldTitleColor, // Set the text color to black
       ),
       decoration: BoxDecoration(
@@ -93,7 +95,7 @@ class _CustomOtpFieldState extends State<CustomOtpField> {
                     // Allow only digits
                   ],
                   keyboardType: TextInputType.number,
-                  separatorBuilder: (index) => const SizedBox(width: 8),
+                  separatorBuilder: (index) => SizedBox(width: 8.sdp),
                   // validator: (value) {
                   //   return value == '2222' ? null : 'Pin is incorrect';
                   // },
@@ -109,8 +111,8 @@ class _CustomOtpFieldState extends State<CustomOtpField> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        margin: const EdgeInsets.only(bottom: 9),
-                        width: 22,
+                        margin: EdgeInsets.only(bottom: 9.sdp),
+                        width: 22.sdp,
                         height: 2,
                         color: borderColor,
                       ),

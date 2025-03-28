@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../widgets/textfields/custom_otp_field.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
@@ -71,47 +72,49 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
       },
       builder: (context, state) {
         return Scaffold(
-          body: Padding(
-            padding: const EdgeInsets.all(32.0),
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(children: [
-                  const GradientIcon(icon: Icons.pin_rounded, size: 120,),
-                  const SizedBox(height: 16),
-                  const TitleText(text: 'Enter the 5-digit OTP sent to your mobile number +923355269449'),
-                  const SizedBox(height: 32),
-                  CustomOtpField(
-                    numberOfFields: 5,
-                    onChange: (code) {
-                      _otpCode = '';
-                    },
-                    onSubmit: (code) {
-                      _otpCode = code;
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      const Spacer(),
-                      if (state is OtResendLoading ? state.isLoading : false)
-                        SizedBox(height: 20, width: 20, child: Loader(color: AppColors.primaryColor)),
-                      const SizedBox(width: 8),
-                      HyperlinkText(
-                        isEnable: true,
-                        text: 'Resend',
-                        onTap: () {
-                          context.read<OtpVerificationBloc>().add(OTPResendEvent(phone: widget.mobileNumberVerificationResponse.phone ?? ''));
-                        },
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 32),
-                  GradientButton(
-                    isLoading: state is OtpVerificationLoading ? state.isLoading : false,
-                    buttonText: 'Verify',
-                    onPressed: () => _validateOTP(context),
-                  ),
-                ],),
+          body: SafeArea(
+            child: Padding(
+              padding: EdgeInsets.all(32.sdp),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    const GradientIcon(icon: Icons.pin_rounded, size: 120,),
+                    SizedBox(height: 16.sdp),
+                    const TitleText(text: 'Enter the 5-digit OTP sent to your mobile number +923355269449'),
+                    SizedBox(height: 32.sdp),
+                    CustomOtpField(
+                      numberOfFields: 5,
+                      onChange: (code) {
+                        _otpCode = '';
+                      },
+                      onSubmit: (code) {
+                        _otpCode = code;
+                      },
+                    ),
+                    SizedBox(height: 8.sdp),
+                    Row(
+                      children: [
+                        const Spacer(),
+                        if (state is OtResendLoading ? state.isLoading : false)
+                          SizedBox(height: 20.sdp, width: 20.sdp, child: Loader(color: AppColors.primaryColor)),
+                        SizedBox(width: 8.sdp),
+                        HyperlinkText(
+                          isEnable: true,
+                          text: 'Resend',
+                          onTap: () {
+                            context.read<OtpVerificationBloc>().add(OTPResendEvent(phone: widget.mobileNumberVerificationResponse.phone ?? ''));
+                          },
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 32.sdp),
+                    GradientButton(
+                      isLoading: state is OtpVerificationLoading ? state.isLoading : false,
+                      buttonText: 'Verify',
+                      onPressed: () => _validateOTP(context),
+                    ),
+                  ],),
+                ),
               ),
             ),
           ),

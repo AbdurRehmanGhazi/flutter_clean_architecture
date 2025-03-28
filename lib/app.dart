@@ -8,6 +8,7 @@ import 'configs/injector/init_dependencies.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/theme.dart';
 import 'core/theme/theme_bloc/theme_bloc.dart';
+import 'core/utils/sdp.dart';
 import 'main.dart';
 import 'rounter/app_route_config.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SDP.init(context);
 
     final router = getIt<AppRouterConfig>().router;
 
