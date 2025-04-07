@@ -42,18 +42,20 @@ class RegistrationView extends StatefulWidget {
 }
 
 class _RegistrationViewState extends State<RegistrationView> {
-  final TextEditingController nameController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
 
-  String _pinCode = '';
-
   _navToMobileNumberVerificationScreen(BuildContext context) {
-    if (formKey.currentState!.validate() && _pinCode.length == 4) {
+    if (formKey.currentState!.validate()) {
       context.read<RegistrationBloc>().add(UserRegistrationEvent(
             phone: widget.mobileNumber,
-            code: _pinCode,
-            name: nameController.text.trim(),
+            code: 'lk',
+            name: firstNameController.text.trim(),
           ));
     }
   }
@@ -72,38 +74,60 @@ class _RegistrationViewState extends State<RegistrationView> {
     builder: (context, state) {
       return Scaffold(
         body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(32.sdp),
-            child: Center(
-              child: SingleChildScrollView(
-                child: Form(
-                  key: formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: Column(children: [
-                    const GradientIcon(icon: Icons.app_registration, size: 120),
-                    SizedBox(height: 16.sdp),
-                    const TitleText(text: 'Registration'),
-                    SizedBox(height: 32.sdp),
-                    CustomTextField(
-                        textEditingController: nameController, hintText: 'Name'),
-                    SizedBox(height: 32.sdp),
-                    CustomOtpField(
-                      numberOfFields: 4,
-                      onChange: (code) {
-                        _pinCode = '';
-                      },
-                      onSubmit: (code) {
-                        _pinCode = code;
-                      },
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.sdp),
+                    child: TitleText(text: 'SIGN UP'),
+                  ),
+                  Card(
+                    margin: EdgeInsets.all(16.sdp),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 32.sdp, horizontal: 16.sdp),
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          children: [
+                            CustomTextField(
+                                textEditingController: firstNameController,
+                                prefixIcon: GradientIcon(icon: Icons.person_rounded),
+                                hintText: 'First Name'),
+                            SizedBox(height: 16.sdp),
+                            CustomTextField(
+                                textEditingController: lastNameController,
+                                prefixIcon: GradientIcon(icon: Icons.person_rounded),
+                                hintText: 'Last Name'),
+                            SizedBox(height: 16.sdp),
+                            CustomTextField(
+                                textEditingController: emailController,
+                                prefixIcon: GradientIcon(icon: Icons.email_rounded),
+                                hintText: 'Email'),
+                            SizedBox(height: 16.sdp),
+                            CustomTextField(
+                                textEditingController: passwordController,
+                                isPasswordField: true,
+                                prefixIcon: GradientIcon(icon: Icons.lock_rounded),
+                                hintText: 'Password'),
+                            SizedBox(height: 16.sdp),
+                            CustomTextField(
+                                textEditingController: confirmPasswordController,
+                                isPasswordField: true,
+                                prefixIcon: GradientIcon(icon: Icons.lock_rounded),
+                                hintText: 'Confirm Password'),
+                            SizedBox(height: 32.sdp),
+                            GradientButton(
+                              isLoading: state is RegistrationLoading ? state.isLoading : false,
+                              buttonText: 'Sign Up',
+                              onPressed: () => _navToMobileNumberVerificationScreen(context),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 32.sdp),
-                    GradientButton(
-                      isLoading: state is RegistrationLoading ? state.isLoading : false,
-                      buttonText: 'Send',
-                      onPressed: () => _navToMobileNumberVerificationScreen(context),
-                    ),
-                  ],),
-                ),
+                  ),
+                ],
               ),
             ),
           ),

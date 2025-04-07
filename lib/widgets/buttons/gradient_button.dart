@@ -6,12 +6,14 @@ import '../loader.dart';
 class GradientButton extends StatelessWidget {
   final String buttonText;
   final VoidCallback onPressed;
+  final double height;
   final bool isLoading;
 
   const GradientButton({
     super.key,
     required this.buttonText,
     required this.onPressed,
+    this.height = 55,
     this.isLoading = false,
   });
 
@@ -19,7 +21,7 @@ class GradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 55.sdp,
+      height: height.sdp,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [

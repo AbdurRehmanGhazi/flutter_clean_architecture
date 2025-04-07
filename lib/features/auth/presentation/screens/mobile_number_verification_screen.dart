@@ -5,6 +5,7 @@ import 'package:flutter_clean_architecture/core/utils/extensions/buld_context.da
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/utils/sdp.dart';
+import '../../../../widgets/dialogs/custom_alert_dialog.dart';
 import '../../../../widgets/textfields/custom_text_field.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
 import '../../../../widgets/labels/title_text.dart';
@@ -33,6 +34,17 @@ class _MobileNumberVerificationView extends StatelessWidget {
 
   final TextEditingController mobileNumberController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  _showConfirmationDialog(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      context.presentCustomDialog(CustomAlertDialog(
+        title: 'Verify your mobile number',
+        content: 'Is ${mobileNumberController.text} correct mobile number?',
+        onYesPressed: () => _validateInputs(context),
+        onNoPressed: () => () {},
+      ));
+    }
+  }
 
   _validateInputs(BuildContext context) {
     if (formKey.currentState!.validate()) {
@@ -67,30 +79,28 @@ class _MobileNumberVerificationView extends StatelessWidget {
                       children: [
                         if (context.isPortrait) SvgPicture.asset(SvgsPath.tabseraLogo),
                         SizedBox(height: 60.sdp),
-                        Padding(
-                          padding: context.isPortrait ? EdgeInsets.symmetric(vertical: context.bodyHeight/2 - 270.sdp) : EdgeInsets.zero,
-                          child: Card(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 48.sdp, horizontal: 16.sdp),
-                              child: Column(
-                                children: [
-                                  if (context.isLandscape) Padding(
-                                    padding: EdgeInsets.only(bottom: 16.sdp),
-                                    child: SvgPicture.asset(SvgsPath.tabseraLogo),
-                                  ),
-                                  const TitleText(text: 'Welcome to Tabsera'),
-                                  SizedBox(height: 32.sdp),
-                                  CustomTextField(
-                                      textEditingController: mobileNumberController,
-                                      isNumericField: true,
-                                      hintText: 'Mobile Number'),
-                                  SizedBox(height: 32.sdp),
-                                  GradientButton(
-                                      isLoading: state is AuthLoading ? state.isLoading : false,
-                                      buttonText: 'Send',
-                                      onPressed: () => _validateInputs(context))
-                                ],
-                              ),
+                        Card(
+                          margin: context.isPortrait ? EdgeInsets.symmetric(vertical: context.bodyHeight/2 - 270.sdp) : EdgeInsets.zero,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 48.sdp, horizontal: 16.sdp),
+                            child: Column(
+                              children: [
+                                if (context.isLandscape) Padding(
+                                  padding: EdgeInsets.only(bottom: 16.sdp),
+                                  child: SvgPicture.asset(SvgsPath.tabseraLogo),
+                                ),
+                                const TitleText(text: 'Welcome to Tabsera'),
+                                SizedBox(height: 32.sdp),
+                                CustomTextField(
+                                    textEditingController: mobileNumberController,
+                                    isNumericField: true,
+                                    hintText: 'Mobile Number'),
+                                SizedBox(height: 32.sdp),
+                                GradientButton(
+                                    isLoading: state is AuthLoading ? state.isLoading : false,
+                                    buttonText: 'Send',
+                                    onPressed: () => _showConfirmationDialog(context))
+                              ],
                             ),
                           ),
                         ),

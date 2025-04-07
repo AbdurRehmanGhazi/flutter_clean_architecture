@@ -165,6 +165,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         // contentPadding: EdgeInsets.symmetric(vertical: 8),
+        prefixIconColor: AppPalette.primaryColor,
         filled: true,
         fillColor: AppPalette.textFieldBGColor,
         labelStyle: TextStyle(color: AppPalette.textFieldHintColor),
@@ -231,6 +232,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         // contentPadding: EdgeInsets.symmetric(vertical: 8),
+        prefixIconColor: AppPalette.primaryColor,
         filled: true,
         fillColor: AppPalette.textFieldBGColor,
         labelStyle: TextStyle(color: AppPalette.textFieldHintColor),

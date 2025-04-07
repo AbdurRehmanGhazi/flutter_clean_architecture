@@ -16,6 +16,7 @@ class CustomTextField extends StatefulWidget {
   final bool isAmountField;
   final num? maxAllowedNumValue;
   final num? minAllowedNumValue;
+  final Widget? prefixIcon;
 
   const CustomTextField({
     super.key,
@@ -29,6 +30,7 @@ class CustomTextField extends StatefulWidget {
     this.isAmountField = false,
     this.maxAllowedNumValue,
     this.minAllowedNumValue,
+    this.prefixIcon,
   });
 
   @override
@@ -112,6 +114,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         counterText: '',
         labelText: widget.hintText,
         hintText: hintText,
+        prefixIcon: widget.prefixIcon,
         suffixIcon: !widget.isPasswordField
             ? null
             : IconButton(
