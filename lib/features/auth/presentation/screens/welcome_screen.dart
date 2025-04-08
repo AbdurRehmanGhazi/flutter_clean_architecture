@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_clean_architecture/features/auth/presentation/widgets/auth_background_view.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/list_translation_locale.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -99,26 +100,28 @@ class _WelcomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.sdp),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(children: [
-                GradientIcon(icon: Icons.data_saver_off, size: 120),
-                SizedBox(height: 16.sdp),
-                TitleText(text: LocaleKeys.welcomeToSaveKaro.tr()),
-                SizedBox(height: 8.sdp),
-                DescriptionText(text: LocaleKeys.easySaveYourMoney.tr()),
-                SizedBox(height: 60.sdp),
-                GradientButton(buttonText: LocaleKeys.signUp.tr(), onPressed: () => _navToMobileNumberVerificationScreen(context)),
-                SizedBox(height: 24.sdp),
-                GradientButton(buttonText: LocaleKeys.login.tr(), onPressed: () => _navToLoginScreen(context)),
-                SizedBox(height: 32.sdp),
-                _getLocaleButtons(context),
-                SizedBox(height: 16.sdp),
-                _getThemeButtons(context)
-                ],),
+      body: AuthBackgroundView(
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(16.sdp),
+            child: Center(
+              child: SingleChildScrollView(
+                child: Column(children: [
+                  GradientIcon(icon: Icons.data_saver_off, size: 120),
+                  SizedBox(height: 16.sdp),
+                  TitleText(text: LocaleKeys.welcomeToSaveKaro.tr()),
+                  SizedBox(height: 8.sdp),
+                  DescriptionText(text: LocaleKeys.easySaveYourMoney.tr()),
+                  SizedBox(height: 60.sdp),
+                  GradientButton(buttonText: LocaleKeys.signUp.tr(), onPressed: () => _navToMobileNumberVerificationScreen(context)),
+                  SizedBox(height: 24.sdp),
+                  GradientButton(buttonText: LocaleKeys.login.tr(), onPressed: () => _navToLoginScreen(context)),
+                  SizedBox(height: 32.sdp),
+                  _getLocaleButtons(context),
+                  SizedBox(height: 16.sdp),
+                  _getThemeButtons(context)
+                  ],),
+              ),
             ),
           ),
         ),

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/theme/app_colors.dart';
 import 'package:flutter_clean_architecture/core/theme/theme_bloc/theme_bloc.dart';
 import 'package:flutter_clean_architecture/core/utils/sdp.dart';
+import 'package:flutter_clean_architecture/features/auth/presentation/widgets/auth_background_view.dart';
 import 'package:flutter_clean_architecture/widgets/labels/description_text.dart';
 import 'package:flutter_clean_architecture/widgets/styles/custom_container_box_decoration.dart';
 import 'package:flutter_svg/svg.dart';
@@ -57,7 +58,7 @@ class _OTPVerificationView extends StatefulWidget {
 
 class __OTPVerificationViewState extends State<_OTPVerificationView> {
   Timer? _timer;
-  int _start = 5;
+  int _start = 30;
   String _otpCode = '';
 
   @override
@@ -73,7 +74,7 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
   }
 
   void startTimer() {
-    setState(() { _start = 5;  });
+    setState(() { _start = 30;  });
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_start > 0) {
         setState(() {
@@ -108,99 +109,101 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
       },
       builder: (context, state) {
         return Scaffold(
-          body: SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.sdp),
-                      child: TitleText(text: 'VERIFICATION'),
-                    ),
-                    Card(
-                      margin: EdgeInsets.all(16.sdp),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.sdp, horizontal: 20.sdp),
-                        child: Column(
-                          children: [
-                            DescriptionText(
-                              text: 'A verification code has been sent to your number ${widget.mobileNumberVerificationResponse.phone}',
-                              overflow: TextOverflow.visible,
-                              textAlign: TextAlign.center,
-                              fontSize: 16.sdp,
-                            ),
-                            AnimatedSize(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                              child: (_start != 0) ? Padding(
-                                padding: EdgeInsets.only(top: 16.sdp),
-                                child: DescriptionText(
-                                  text: "Please Wait: $_start seconds",
-                                  color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
-                                ),
-                              ) : SizedBox.shrink(),
-                            ), //DateTimeFormatter.formatDuration(_start)
-                            SizedBox(height: 16.sdp),
-                            Container(
-                              height: 120.sdp,
-                              width: 120.sdp,
-                              padding: EdgeInsets.all(16.sdp),
-                              decoration: createCustomBorder(allRadius: 60.sdp, bgColor: Colors.transparent, all: true),
-                              child: SvgPicture.asset(SvgsPath.tabseraLogo),
-                            ),
-                            SizedBox(height: 24.sdp),
-                            CustomOtpField(
-                              numberOfFields: 5,
-                              onChange: (code) {
-                                _otpCode = '';
-                              },
-                              onSubmit: (code) {
-                                _otpCode = code;
-                              },
-                            ),
-                            SizedBox(height: 32.sdp),
-                            GradientButton(
-                              isLoading: state is OtpVerificationLoading ? state.isLoading : false,
-                              buttonText: 'Verify',
-                              onPressed: () => _validateOTP(context),
-                            ),
-                            AnimatedSize(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut,
-                              child: (_start != 0) ? SizedBox.shrink() : Padding(
-                                padding: EdgeInsets.only(top: 8.0.sdp),
-                                child: Column(
-                                  children: [
-                                    DescriptionText(text: 'Didn\'t receive a code'),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        if (state is OtResendLoading ? state.isLoading : false)
-                                          SizedBox(
-                                              height: 20.sdp,
-                                              width: 20.sdp,
-                                              child: Loader(color: AppColors.primaryColor)),
-                                        SizedBox(width: 8.sdp),
-                                        HyperlinkText(
-                                          isEnable: _start == 0,
-                                          text: 'Resend Code',
-                                          // textDecoration: TextDecoration.none,
-                                          color: context.read<ThemeBloc>().state.appPalette.primaryColor,
-                                          onTap: () {
-                                            context.read<OtpVerificationBloc>().add(OTPResendEvent(phone: widget.mobileNumberVerificationResponse.phone ?? ''));
-                                          },
-                                        )
-                                      ],
-                                    ),
-                                  ],
+          body: AuthBackgroundView(
+            child: SafeArea(
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 16.sdp),
+                        child: TitleText(text: 'VERIFICATION'),
+                      ),
+                      Card(
+                        margin: EdgeInsets.all(16.sdp),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 20.sdp, horizontal: 20.sdp),
+                          child: Column(
+                            children: [
+                              DescriptionText(
+                                text: 'A verification code has been sent to your number ${widget.mobileNumberVerificationResponse.phone}',
+                                overflow: TextOverflow.visible,
+                                textAlign: TextAlign.center,
+                                fontSize: 16.sdp,
+                              ),
+                              AnimatedSize(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                                child: (_start != 0) ? Padding(
+                                  padding: EdgeInsets.only(top: 16.sdp),
+                                  child: DescriptionText(
+                                    text: "Please Wait: $_start seconds",
+                                    color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.5),
+                                  ),
+                                ) : SizedBox.shrink(),
+                              ), //DateTimeFormatter.formatDuration(_start)
+                              SizedBox(height: 16.sdp),
+                              Container(
+                                height: 120.sdp,
+                                width: 120.sdp,
+                                padding: EdgeInsets.all(16.sdp),
+                                decoration: createCustomBorder(allRadius: 60.sdp, bgColor: Colors.transparent, all: true),
+                                child: SvgPicture.asset(SvgsPath.tabseraLogo),
+                              ),
+                              SizedBox(height: 24.sdp),
+                              CustomOtpField(
+                                numberOfFields: 5,
+                                onChange: (code) {
+                                  _otpCode = '';
+                                },
+                                onSubmit: (code) {
+                                  _otpCode = code;
+                                },
+                              ),
+                              SizedBox(height: 32.sdp),
+                              GradientButton(
+                                isLoading: state is OtpVerificationLoading ? state.isLoading : false,
+                                buttonText: 'Verify',
+                                onPressed: () => _validateOTP(context),
+                              ),
+                              AnimatedSize(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut,
+                                child: (_start != 0) ? SizedBox.shrink() : Padding(
+                                  padding: EdgeInsets.only(top: 8.0.sdp),
+                                  child: Column(
+                                    children: [
+                                      DescriptionText(text: 'Didn\'t receive a code'),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          if (state is OtResendLoading ? state.isLoading : false)
+                                            SizedBox(
+                                                height: 20.sdp,
+                                                width: 20.sdp,
+                                                child: Loader(color: AppColors.primaryColor)),
+                                          SizedBox(width: 8.sdp),
+                                          HyperlinkText(
+                                            isEnable: _start == 0,
+                                            text: 'Resend Code',
+                                            // textDecoration: TextDecoration.none,
+                                            color: context.read<ThemeBloc>().state.appPalette.primaryColor,
+                                            onTap: () {
+                                              context.read<OtpVerificationBloc>().add(OTPResendEvent(phone: widget.mobileNumberVerificationResponse.phone ?? ''));
+                                            },
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -4,6 +4,7 @@ enum AppRoute {
   otpVerification,
   registration,
   login,
+  resetPassword,
   dashboard,
   settings,
 }
@@ -21,6 +22,8 @@ extension AppPageExtension on AppRoute {
         return "/registration";
         case AppRoute.login:
         return "/login";
+        case AppRoute.resetPassword:
+        return "/resetPassword";
         case AppRoute.dashboard:
         return "/dashboard";
         case AppRoute.settings:
@@ -42,6 +45,8 @@ extension AppPageExtension on AppRoute {
         return "REGISTRATION";
         case AppRoute.login:
         return "LOGIN";
+        case AppRoute.resetPassword:
+        return "RESET PASSWORD";
         case AppRoute.dashboard:
         return "DASHBOARD";
         case AppRoute.settings:

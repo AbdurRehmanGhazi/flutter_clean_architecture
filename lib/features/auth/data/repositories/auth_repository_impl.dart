@@ -1,3 +1,4 @@
+import 'package:flutter_clean_architecture/core/secrets/shared_preference.dart';
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/repositories/auth_repository.dart';
@@ -77,4 +78,16 @@ class AuthRepositoryImpl implements AuthRepository {
       return left(Failure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, bool>> getRememberMe() async {
+    return right(await SharedPreference.getRememberMe());
+  }
+
+  @override
+  Future<Either<Failure, bool>> setRememberMe({required bool value}) async {
+    await SharedPreference.setRememberMe(value);
+    return right(value);
+  }
+
 }

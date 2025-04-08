@@ -1,3 +1,6 @@
+import 'package:flutter_clean_architecture/features/auth/domain/usecases/get_remember_me_usecase.dart';
+import 'package:flutter_clean_architecture/features/auth/domain/usecases/set_remember_me_usecase.dart';
+
 import '../../../configs/injector/init_dependencies.dart';
 import '../data/datasources/auth_remote_data_source.dart';
 import '../data/repositories/auth_repository_impl.dart';
@@ -45,6 +48,18 @@ class AuthDependency {
 
       ..registerFactory<RegistrationUseCase>(
             () => RegistrationUseCase(
+          getIt(),
+        ),
+      )
+
+      ..registerFactory<SetRememberMeUseCase>(
+            () => SetRememberMeUseCase(
+          getIt(),
+        ),
+      )
+
+      ..registerFactory<GetRememberMeUseCase>(
+            () => GetRememberMeUseCase(
           getIt(),
         ),
       )

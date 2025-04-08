@@ -1,3 +1,4 @@
+import 'package:flutter_clean_architecture/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../features/auth/domain/entities/mobile_number_verification_response.dart';
 import '../features/auth/presentation/screens/login_screen.dart';
@@ -55,6 +56,14 @@ class AppRouterConfig {
         name: AppRoute.login.toName,
         builder: (context, state) {
           return const LoginScreen();
+        },
+      ),
+      GoRoute(
+        path: AppRoute.resetPassword.toPath,
+        name: AppRoute.resetPassword.toName,
+        builder: (context, state) {
+          final String mobileNumber = state.extra as String;
+          return ResetPasswordScreen(mobileNumber: mobileNumber);
         },
       ),
       GoRoute(

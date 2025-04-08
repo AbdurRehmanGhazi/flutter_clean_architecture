@@ -30,4 +30,7 @@ abstract interface class AuthRepository {
     required String code,
   });
 
+  Future<Either<Failure, bool>> setRememberMe({required bool value});
+
+  Future<Either<Failure, bool>> getRememberMe();
 }

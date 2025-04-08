@@ -126,6 +126,7 @@ class AppTheme {
         primary: AppPalette.primaryColor,
         brightness: Brightness.dark,
       ),
+      primaryColor: AppPalette.primaryColor,
       scaffoldBackgroundColor: AppPalette.backgroundColor,
       appBarTheme: AppBarTheme(
         backgroundColor: AppPalette.backgroundColor,
@@ -193,6 +194,7 @@ class AppTheme {
         primary: AppPalette.primaryColor,
         brightness: Brightness.light,
       ),
+      primaryColor: AppPalette.primaryColor,
       scaffoldBackgroundColor: AppPalette.backgroundColor,
       appBarTheme: AppBarTheme(
         backgroundColor: AppPalette.backgroundColor,

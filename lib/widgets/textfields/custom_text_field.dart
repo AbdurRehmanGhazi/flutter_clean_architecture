@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_clean_architecture/core/validators/email_validator.dart';
+import 'package:flutter_clean_architecture/core/validators/password_validator.dart';
+import 'package:flutter_clean_architecture/core/validators/phone_validator.dart';
 import '../../core/utils/extensions/string.dart';
 import '../../core/utils/extensions/num.dart';
 import '../../core/theme/app_colors.dart';
 import '../classes/thousands_seperator_input_formatter.dart';
+
+enum ValidatorType {
+  email,
+  password,
+  confirmPassword,
+  username,
+  phone,
+  defaultValidator,
+}
 
 class CustomTextField extends StatefulWidget {
   final TextEditingController textEditingController;
@@ -17,6 +29,7 @@ class CustomTextField extends StatefulWidget {
   final num? maxAllowedNumValue;
   final num? minAllowedNumValue;
   final Widget? prefixIcon;
+  final ValidatorType validatorType;
 
   const CustomTextField({
     super.key,
@@ -31,6 +44,7 @@ class CustomTextField extends StatefulWidget {
     this.maxAllowedNumValue,
     this.minAllowedNumValue,
     this.prefixIcon,
+    this.validatorType = ValidatorType.defaultValidator,
   });
 
   @override
@@ -81,6 +95,23 @@ class _CustomTextFieldState extends State<CustomTextField> {
     }
   }
 
+  String? _defaultValidator(String? value) {
+    if (value!.isEmpty) {
+      return "${widget.hintText} is required";
+    }
+    else if (widget.isNumericField && !widget.readOnly && ((widget.isAmountField ? value.amountValue : value).toDouble() == 0)) {
+      return "${widget.hintText} can't be zero";
+    }
+    else if (widget.isNumericField && widget.maxAllowedNumValue != null && value.amountValue.toNum() > (widget.maxAllowedNumValue ?? double.maxFinite)) {
+      return "${widget.hintText} can't exceed from ${widget.maxAllowedNumValue?.toISFormatNumber()}";
+    }
+    else if (widget.isNumericField && widget.minAllowedNumValue != null && value.amountValue.toNum() < (widget.minAllowedNumValue ?? 0)) {
+      return "${widget.hintText} can't below from ${widget.minAllowedNumValue?.toISFormatNumber()}";
+    }
+    else
+      return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -92,20 +123,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
       maxLength: widget.limit,
       obscureText: _passwordVisible,
       validator: (value) {
-        if (value!.isEmpty) {
-          return "${widget.hintText} is required";
+        if (value == null) _defaultValidator(value);
+
+        switch (widget.validatorType) {
+          case ValidatorType.email:
+            return EmailValidator.validate(value!);
+          case ValidatorType.password:
+            return PasswordValidator.validate(value!);
+          case ValidatorType.confirmPassword:
+          case ValidatorType.username:
+          case ValidatorType.phone:
+          case ValidatorType.defaultValidator:
+            return _defaultValidator(value);
         }
-        else if (widget.isNumericField && !widget.readOnly && ((widget.isAmountField ? value.amountValue : value).toDouble() == 0)) {
-          return "${widget.hintText} can't be zero";
-        }
-        else if (widget.isNumericField && widget.maxAllowedNumValue != null && value.amountValue.toNum() > (widget.maxAllowedNumValue ?? double.maxFinite)) {
-          return "${widget.hintText} can't exceed from ${widget.maxAllowedNumValue?.toISFormatNumber()}";
-        }
-        else if (widget.isNumericField && widget.minAllowedNumValue != null && value.amountValue.toNum() < (widget.minAllowedNumValue ?? 0)) {
-          return "${widget.hintText} can't below from ${widget.minAllowedNumValue?.toISFormatNumber()}";
-        }
-        else
-          return null;
       },
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
