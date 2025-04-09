@@ -1,3 +1,4 @@
+import 'package:flutter_clean_architecture/features/auth/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:flutter_clean_architecture/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:go_router/go_router.dart';
 import '../features/auth/domain/entities/mobile_number_verification_response.dart';
@@ -39,8 +40,10 @@ class AppRouterConfig {
         path: AppRoute.otpVerification.toPath,
         name: AppRoute.otpVerification.toName,
         builder: (context, state) {
-          final res = state.extra as MobileNumberVerificationResponse;
-          return OTPVerificationScreen(mobileNumberVerificationResponse: res);
+          final args = state.extra as List;
+          final mobileNumber = args[0] as String;
+          final type = args[1] as OtpVerificationType;
+          return OTPVerificationScreen(mobileNumber: mobileNumber, otpVerificationType: type);
         },
       ),
       GoRoute(

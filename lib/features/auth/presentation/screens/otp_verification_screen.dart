@@ -11,27 +11,27 @@ import 'package:flutter_clean_architecture/widgets/styles/custom_container_box_d
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/constants/svgs_path.dart';
+import '../../../../core/secrets/shared_preference.dart';
 import '../../../../widgets/textfields/custom_otp_field.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
-import '../../../../widgets/gradient_icon.dart';
 import '../../../../widgets/labels/hyperlink_text.dart';
 import '../../../../widgets/loader.dart';
 import '../../../../widgets/labels/title_text.dart';
 import '../../../../core/utils/show_snackbar.dart';
-import '../../../../features/auth/domain/entities/mobile_number_verification_response.dart';
 import '../../../../features/auth/domain/usecases/otp_resend_usecase.dart';
 import '../../../../features/auth/domain/usecases/otp_verification_usecase.dart';
 import '../../../../features/auth/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
-import '../../../../features/auth/presentation/screens/registration_screen.dart';
 import '../../../../configs/injector/init_dependencies.dart';
 import '../../../../rounter/app_route_utils.dart';
 
 class OTPVerificationScreen extends StatelessWidget {
-  final MobileNumberVerificationResponse mobileNumberVerificationResponse;
+  final String mobileNumber;
+  final OtpVerificationType otpVerificationType;
 
   const OTPVerificationScreen({
     super.key,
-    required this.mobileNumberVerificationResponse,
+    required this.mobileNumber,
+    required this.otpVerificationType,
   });
 
   @override
@@ -42,15 +42,21 @@ class OTPVerificationScreen extends StatelessWidget {
         otpResend: getIt<OTPResendUseCase>(),
       ),
       child: _OTPVerificationView(
-          mobileNumberVerificationResponse: mobileNumberVerificationResponse),
+        mobileNumber: mobileNumber,
+        otpVerificationType: otpVerificationType,
+      ),
     );
   }
 }
 
 class _OTPVerificationView extends StatefulWidget {
-  const _OTPVerificationView({super.key, required this.mobileNumberVerificationResponse});
+  const _OTPVerificationView({
+    required this.mobileNumber,
+    required this.otpVerificationType,
+  });
 
-  final MobileNumberVerificationResponse mobileNumberVerificationResponse;
+  final String mobileNumber;
+  final OtpVerificationType otpVerificationType;
 
   @override
   State<_OTPVerificationView> createState() => __OTPVerificationViewState();
@@ -69,7 +75,7 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
 
   _validateOTP(BuildContext context) {
     if (_otpCode.length == 5) {
-      context.read<OtpVerificationBloc>().add(OTPVerificationEvent(otp: _otpCode));
+      context.read<OtpVerificationBloc>().add(OTPVerificationEvent(otp: _otpCode, type: widget.otpVerificationType));
     }
   }
 
@@ -96,9 +102,17 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<OtpVerificationBloc, OtpVerificationState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state is OtpVerificationSuccess) {
-          context.pushNamed(AppRoute.registration.toName, extra: widget.mobileNumberVerificationResponse.phone);
+          switch(widget.otpVerificationType) {
+            case OtpVerificationType.registration:
+              context.pushNamed(AppRoute.registration.toName, extra: widget.mobileNumber);
+            case OtpVerificationType.resetPassword:
+              context.pushNamed(AppRoute.resetPassword.toName, extra: widget.mobileNumber);
+            case OtpVerificationType.twoStep:
+              await SharedPreference.saveLogin(true);
+              context.go(AppRoute.dashboard.toPath);
+          }
         } else if (state is OtpResendSuccess) {
           // showSnackBar(state.model.phone ?? '', context);
           showSnackBar('OTP Resend Successfully!', context);
@@ -126,7 +140,7 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
                           child: Column(
                             children: [
                               DescriptionText(
-                                text: 'A verification code has been sent to your number ${widget.mobileNumberVerificationResponse.phone}',
+                                text: 'A verification code has been sent to your number ${widget.mobileNumber}',
                                 overflow: TextOverflow.visible,
                                 textAlign: TextAlign.center,
                                 fontSize: 16.sdp,
@@ -189,8 +203,11 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
                                             // textDecoration: TextDecoration.none,
                                             color: context.read<ThemeBloc>().state.appPalette.primaryColor,
                                             onTap: () {
-                                              context.read<OtpVerificationBloc>().add(OTPResendEvent(phone: widget.mobileNumberVerificationResponse.phone ?? ''));
-                                            },
+                                              context.read<OtpVerificationBloc>().add(OTPResendEvent(
+                                                phone: widget.mobileNumber ,
+                                                type: widget.otpVerificationType,
+                                              ));
+                                              },
                                           )
                                         ],
                                       ),

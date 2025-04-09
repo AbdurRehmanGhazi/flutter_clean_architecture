@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/constants/svgs_path.dart';
 import 'package:flutter_clean_architecture/core/utils/extensions/buld_context.dart';
+import 'package:flutter_clean_architecture/features/auth/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:flutter_clean_architecture/features/auth/presentation/widgets/auth_background_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
@@ -60,7 +61,7 @@ class _MobileNumberVerificationView extends StatelessWidget {
       listener: (context, state) {
         if (state is MobileNumberVerified) {
           // Navigator.push(context, OTPVerificationScreen.route(mobileNumberVerificationResponse: state.response));
-          context.pushNamed(AppRoute.otpVerification.toName, extra: state.response);
+          context.pushNamed(AppRoute.otpVerification.toName, extra: [state.response.phone, OtpVerificationType.registration]);
         } else if (state is AuthFailure) {
           showSnackBar(state.message, context);
         }

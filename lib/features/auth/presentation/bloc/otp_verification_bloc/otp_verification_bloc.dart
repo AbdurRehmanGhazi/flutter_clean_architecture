@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:meta/meta.dart';
+import '../../../../../core/error/failures.dart';
 import '../../../domain/entities/otp_resend_response.dart';
 import '../../../domain/usecases/otp_resend_usecase.dart';
 import '../../../domain/usecases/otp_verification_usecase.dart';
@@ -27,8 +29,19 @@ class OtpVerificationBloc extends Bloc<OtpVerificationEvent, OtpVerificationStat
     OTPVerificationEvent event,
     Emitter<OtpVerificationState> emit,
   ) async {
+
+    late Either<Failure, String> res;
     emit(OtpVerificationLoading(isLoading: true));
-    final res = await _otpVerification(OTPVerificationParams(otp: event.otp, mobileNumber: ''));
+
+    switch (event.type) {
+      case OtpVerificationType.registration:
+        res = await _otpVerification(OTPVerificationParams(otp: event.otp, mobileNumber: ''));
+      case OtpVerificationType.resetPassword:
+        res = await _otpVerification(OTPVerificationParams(otp: event.otp, mobileNumber: ''));
+      case OtpVerificationType.twoStep:
+        res = await _otpVerification(OTPVerificationParams(otp: event.otp, mobileNumber: ''));
+    }
+
     emit(OtpVerificationLoading());
     res.fold(
       (l) => emit(OtpVerificationFailure(l.message)),
@@ -40,8 +53,19 @@ class OtpVerificationBloc extends Bloc<OtpVerificationEvent, OtpVerificationStat
     OTPResendEvent event,
     Emitter<OtpVerificationState> emit,
   ) async {
+
+    late Either<Failure, OtpResendResponse> res;
     emit(OtResendLoading(isLoading: true));
-    final res = await _otpResend(OtpResendParams(phone: ''));
+
+    switch (event.type) {
+      case OtpVerificationType.registration:
+        res = await _otpResend(OtpResendParams(phone: ''));
+      case OtpVerificationType.resetPassword:
+        res = await _otpResend(OtpResendParams(phone: ''));
+      case OtpVerificationType.twoStep:
+        res = await _otpResend(OtpResendParams(phone: ''));
+    }
+
     emit(OtResendLoading());
     res.fold(
       (l) => emit(OtpVerificationFailure(l.message)),

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:flutter_clean_architecture/features/auth/presentation/widgets/auth_background_view.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/validators/confirm_password_validator.dart';
 import '../../../../widgets/textfields/custom_otp_field.dart';
 import '../../../../widgets/textfields/custom_text_field.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
@@ -50,6 +51,11 @@ class __ResetPasswordViewState extends State<_ResetPasswordView> {
 
   _navToMobileNumberVerificationScreen(BuildContext context) {
     if (formKey.currentState!.validate()) {
+      final validateConfirmPassword = ConfirmPasswordValidator.validate(passwordController.text.trim(), confirmPasswordController.text.trim());
+      if (validateConfirmPassword != null) {
+        showSnackBar(validateConfirmPassword);
+        return;
+      }
       context.read<RegistrationBloc>().add(UserRegistrationEvent(
         phone: widget.mobileNumber,
         code: 'lk',
@@ -87,17 +93,20 @@ class __ResetPasswordViewState extends State<_ResetPasswordView> {
                             padding: EdgeInsets.symmetric(vertical: 32.sdp, horizontal: 16.sdp),
                             child: Form(
                               key: formKey,
+                              autovalidateMode: AutovalidateMode.onUserInteraction,
                               child: Column(
                                 children: [
                                   CustomTextField(
-                                      textEditingController: passwordController,
                                       isPasswordField: true,
+                                      validatorType: ValidatorType.password,
+                                      textEditingController: passwordController,
                                       prefixIcon: GradientIcon(icon: Icons.lock_rounded),
                                       hintText: 'Password'),
                                   SizedBox(height: 16.sdp),
                                   CustomTextField(
-                                      textEditingController: confirmPasswordController,
                                       isPasswordField: true,
+                                      validatorType: ValidatorType.confirmPassword,
+                                      textEditingController: confirmPasswordController,
                                       prefixIcon: GradientIcon(icon: Icons.lock_rounded),
                                       hintText: 'Confirm Password'),
                                   SizedBox(height: 32.sdp),

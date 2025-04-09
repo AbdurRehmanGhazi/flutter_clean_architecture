@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/utils/sdp.dart';
+import 'package:flutter_clean_architecture/features/auth/domain/entities/mobile_number_verification_response.dart';
 import 'package:flutter_clean_architecture/features/auth/domain/usecases/get_remember_me_usecase.dart';
 import 'package:flutter_clean_architecture/features/auth/domain/usecases/set_remember_me_usecase.dart';
+import 'package:flutter_clean_architecture/features/auth/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:flutter_clean_architecture/features/auth/presentation/widgets/auth_background_view.dart';
 import 'package:flutter_clean_architecture/widgets/checkbox_with_label.dart';
 import 'package:flutter_clean_architecture/widgets/labels/description_text.dart';
@@ -54,7 +56,14 @@ class _LoginView extends StatelessWidget {
   }
 
   _navToResetPasswordScreen(BuildContext context) {
-    context.pushNamed(AppRoute.resetPassword.toName, extra: mobileNumberController.text.trim());
+    if (mobileNumberController.text.trim().isNotEmpty) {
+      context.pushNamed(AppRoute.otpVerification.toName, extra: [
+        mobileNumberController.text.trim(),
+        OtpVerificationType.resetPassword,
+      ]);
+    } else {
+      showSnackBar('Mobile Number is required!');
+    }
   }
 
   @override
