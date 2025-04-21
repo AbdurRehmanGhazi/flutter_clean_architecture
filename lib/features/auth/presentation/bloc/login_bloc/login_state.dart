@@ -1,29 +1,38 @@
 part of 'login_bloc.dart';
 
-class LoginState {
+
+class LoginBlocData {
+  final User? user;
   final bool isRemember;
-  LoginState({required this.isRemember});
+  final bool isLoading;
+
+  LoginBlocData({this.user, this.isRemember = false, this.isLoading = false});
+
+  LoginBlocData copyWith({User? user, bool? isRemember, bool? isLoading}) {
+    return LoginBlocData(
+      user: user ?? this.user,
+      isRemember: isRemember ?? this.isRemember,
+      isLoading: isLoading ?? this.isLoading,
+    );
+  }
+}
+
+@immutable
+sealed class LoginState {
+  final LoginBlocData blocData;
+  const LoginState({required this.blocData});
 }
 
 final class LoginInitial extends LoginState {
-  LoginInitial({required super.isRemember});
-}
-
-
-final class LoginLoading extends LoginState {
-  final bool isLoading;
-
-  LoginLoading({this.isLoading = false, required super.isRemember});
+  const LoginInitial({required super.blocData});
 }
 
 final class LoginFailure extends LoginState {
   final String message;
 
-  LoginFailure(this.message, {required super.isRemember});
+  const LoginFailure(this.message, {required super.blocData});
 }
 
 final class LoginSuccess extends LoginState {
-  final LoginResponse loginResponse;
-
-  LoginSuccess(this.loginResponse, {required super.isRemember});
+  const LoginSuccess({required super.blocData});
 }

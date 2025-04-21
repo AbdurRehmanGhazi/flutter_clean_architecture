@@ -26,12 +26,12 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: isEnable && !isLoading ? onPressed : null,
       style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
-        backgroundColor: WidgetStatePropertyAll(isEnable ? AppColors.primaryColor : AppColors.unselectedItemColor),
+        backgroundColor: WidgetStatePropertyAll(isEnable ? Theme.of(context).primaryColor : Theme.of(context).disabledColor),
         shadowColor: WidgetStatePropertyAll(Colors.transparent),
         padding: WidgetStatePropertyAll(EdgeInsets.symmetric(vertical: 0, horizontal: 12)),
         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
-          side: BorderSide(color: isEnable ? AppColors.primaryColor : AppColors.unselectedItemColor),
+          side: BorderSide(color: isEnable ? Theme.of(context).primaryColor : Theme.of(context).disabledColor),
         )),
         minimumSize: WidgetStatePropertyAll(Size(double.minPositive, height.sdp)), // Full width with defined height
       ),

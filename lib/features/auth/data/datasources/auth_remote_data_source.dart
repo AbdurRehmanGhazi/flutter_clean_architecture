@@ -1,9 +1,9 @@
+import '../../../../core/entities/user.dart';
 import '../models/requests/login_request_model.dart';
 import '../models/requests/mobile_number_verification_request_model.dart';
 import '../models/requests/otp_resend_request_model.dart';
 import '../models/requests/otp_verification_request_model.dart';
 import '../models/requests/registration_request_model.dart';
-import '../models/responses/login_response_model.dart';
 import '../models/responses/mobile_number_verification_response_model.dart';
 import '../models/responses/otp_resend_response_model.dart';
 import '../models/responses/registration_response_model.dart';
@@ -25,7 +25,7 @@ abstract interface class AuthRemoteDataSource {
       required RegistrationRequestModel payload,
     });
 
-  Future<LoginResponseModel> loginRequest({
+  Future<User> loginRequest({
       required LoginRequestModel payload,
     });
 }
@@ -68,9 +68,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<LoginResponseModel> loginRequest({required LoginRequestModel payload}) async {
+  Future<User> loginRequest({required LoginRequestModel payload}) async {
     await Future.delayed(const Duration(seconds: 2));
-    return LoginResponseModel(name: 'Abdur Rehman', phone: '03351234567', token: 'alsdjfdasfkasdjkfsd;fjk');
+    return User(id: '1234', email: 'abdur.rehman@smartfusion.co', name: 'Abudr Rehman', mobileNumber: '${payload.phone}', password: '${payload.code}');
   }
 
 }

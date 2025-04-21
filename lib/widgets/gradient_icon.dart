@@ -17,7 +17,7 @@ class GradientIcon extends StatelessWidget {
     return ShaderMask(
       shaderCallback: (Rect bounds) {
         return LinearGradient(
-          colors: [AppColors.gradient1, AppColors.gradient2,],
+          colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
           begin: Alignment.bottomLeft,
           end: Alignment.topRight,
         ).createShader(bounds);

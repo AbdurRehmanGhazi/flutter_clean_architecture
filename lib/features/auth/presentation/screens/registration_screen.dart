@@ -72,7 +72,7 @@ class _RegistrationViewState extends State<_RegistrationView> {
     return BlocConsumer<RegistrationBloc, RegistrationState>(
         listener: (context, state) {
       if (state is RegistrationSuccess) {
-        context.go(AppRoute.welcome.toPath);
+        context.go(AppRoute.login.toPath);
         Timer(const Duration(milliseconds: 500), () => showSnackBar('Registration Complete Successfully!', globalNavigatorKey.currentContext));
       } else if (state is RegistrationFailure) {
         showSnackBar(state.message, context);

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/utils/sdp.dart';
-import 'package:flutter_clean_architecture/features/auth/domain/entities/mobile_number_verification_response.dart';
-import 'package:flutter_clean_architecture/features/auth/domain/usecases/get_remember_me_usecase.dart';
-import 'package:flutter_clean_architecture/features/auth/domain/usecases/set_remember_me_usecase.dart';
 import 'package:flutter_clean_architecture/features/auth/presentation/bloc/otp_verification_bloc/otp_verification_bloc.dart';
 import 'package:flutter_clean_architecture/features/auth/presentation/widgets/auth_background_view.dart';
 import 'package:flutter_clean_architecture/widgets/checkbox_with_label.dart';
@@ -13,7 +10,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../widgets/textfields/custom_text_field.dart';
 import '../../../../widgets/buttons/gradient_button.dart';
-import '../../../../widgets/gradient_icon.dart';
 import '../../../../widgets/labels/title_text.dart';
 import '../../../../core/secrets/shared_preference.dart';
 import '../../../../core/utils/show_snackbar.dart';
@@ -31,26 +27,24 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => LoginBloc(
         loginUseCase: getIt<LoginUseCase>(),
-        getRememberMe: getIt<GetRememberMeUseCase>(),
-        setRememberMe: getIt<SetRememberMeUseCase>(),
-      )..add(LoadRememberMe()),
+      ),
       child: _LoginView(),
     );
   }
 }
 
 class _LoginView extends StatelessWidget {
-  _LoginView({super.key});
+  _LoginView();
 
-  final TextEditingController mobileNumberController = TextEditingController();
-  final TextEditingController pinController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   _validateInputs(BuildContext context) {
     if (formKey.currentState!.validate()) {
       context.read<LoginBloc>().add(UserLoginEvent(
         mobileNumber: mobileNumberController.text.trim(),
-        pin: pinController.text.trim(),
+        pin: passwordController.text.trim(),
       ));
     }
   }
@@ -68,6 +62,7 @@ class _LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) async {
         if (state is LoginSuccess) {
@@ -79,6 +74,12 @@ class _LoginView extends StatelessWidget {
         }
       },
       builder: (context, state) {
+
+        mobileNumberController = TextEditingController(text: state.blocData.user?.mobileNumber);
+        if (state.blocData.isRemember && (state.blocData.user?.password?.isNotEmpty ?? false) && (passwordController.text.trim().isEmpty)) {
+          passwordController = TextEditingController(text: state.blocData.user?.password);
+        }
+
         return Scaffold(
           body: AuthBackgroundView(
             child: SafeArea(
@@ -109,10 +110,11 @@ class _LoginView extends StatelessWidget {
                                 CustomTextField(
                                     textEditingController: mobileNumberController,
                                     isNumericField: true,
+                                    readOnly: state.blocData.user?.mobileNumber?.isNotEmpty ?? false,
                                     hintText: 'Mobile Number'),
                                 SizedBox(height: 16.sdp),
                                 CustomTextField(
-                                    textEditingController: pinController,
+                                    textEditingController: passwordController,
                                     isPasswordField: true,
                                     validatorType: ValidatorType.password,
                                     hintText: 'Password'),
@@ -130,14 +132,14 @@ class _LoginView extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                     child: CheckboxWithLabel(
                                       label: 'Remember Me',
-                                      value: state.isRemember,
+                                      value: state.blocData.isRemember,
                                       onChanged: (value) {
                                         context.read<LoginBloc>().add(RememberToggle(isRemember: value));
                                       })
                                 ),
                                 SizedBox(height: 8.sdp),
                                 GradientButton(
-                                    isLoading: state is LoginLoading ? state.isLoading : false,
+                                    isLoading: state.blocData.isLoading,
                                     buttonText: 'Send',
                                     onPressed: () => _validateInputs(context)),
                                 SizedBox(height: 8.sdp),
@@ -145,6 +147,7 @@ class _LoginView extends StatelessWidget {
                                   text: 'Use another account.',
                                   textAlign: TextAlign.center,
                                   textDecoration: TextDecoration.none,
+                                  onTap: () => context.go(AppRoute.mobileNumberVerification.toPath),
                                 ),
                               ],
                             ),

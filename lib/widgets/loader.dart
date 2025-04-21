@@ -11,7 +11,7 @@ class Loader extends StatelessWidget {
     return Transform.scale(
       scale: 0.75,
       child: Center(
-        child: CircularProgressIndicator(color: color ?? AppColors.whiteColor),
+        child: CircularProgressIndicator(color: color ?? Theme.of(context).primaryColorLight),
       ),
     );
   }

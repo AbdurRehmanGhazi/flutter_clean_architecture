@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
 
     return BlocConsumer<ThemeBloc, ThemeState>(
       listener: (context, state) {
-        AppColors = state.appPalette;
+        // AppColors = state.appColors;
       },
       builder: (context, state) {
         return MaterialApp.router(
@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           themeMode: state.materialThemeMode, // context.watch<ThemeProvider>().lightOrDarkMode,
-          theme: AppTheme.lightMode(AppColors),
-          darkTheme: AppTheme.darkMode(AppColors),
+          theme: AppTheme.themeData(state.appColors, state.statusBarIconBrightness),
+          darkTheme: AppTheme.themeData(state.appColors, state.statusBarIconBrightness),
           routerConfig: router,
         );
       },

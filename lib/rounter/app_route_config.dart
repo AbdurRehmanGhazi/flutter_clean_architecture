@@ -58,7 +58,7 @@ class AppRouterConfig {
         path: AppRoute.login.toPath,
         name: AppRoute.login.toName,
         builder: (context, state) {
-          return const LoginScreen();
+          return LoginScreen();
         },
       ),
       GoRoute(

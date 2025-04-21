@@ -195,13 +195,13 @@ class __OTPVerificationViewState extends State<_OTPVerificationView> {
                                             SizedBox(
                                                 height: 20.sdp,
                                                 width: 20.sdp,
-                                                child: Loader(color: AppColors.primaryColor)),
+                                                child: Loader(color: Theme.of(context).primaryColor)),
                                           SizedBox(width: 8.sdp),
                                           HyperlinkText(
                                             isEnable: _start == 0,
                                             text: 'Resend Code',
                                             // textDecoration: TextDecoration.none,
-                                            color: context.read<ThemeBloc>().state.appPalette.primaryColor,
+                                            color: context.read<ThemeBloc>().state.appColors.primaryColor,
                                             onTap: () {
                                               context.read<OtpVerificationBloc>().add(OTPResendEvent(
                                                 phone: widget.mobileNumber ,

@@ -46,21 +46,20 @@ class _CustomOtpFieldState extends State<CustomOtpField> {
 
   @override
   Widget build(BuildContext context) {
-    final errorBorderColor = AppColors.warningColor;
+    final errorBorderColor = Theme.of(context).colorScheme.error;
     final borderColor = widget.isEnabled
-        ? AppColors.primaryColor
-        : AppColors.primaryColor.withOpacity(0.5);
+        ? Theme.of(context).primaryColor
+        : Theme.of(context).primaryColor.withOpacity(0.5);
     final bottomBorderWidth = 4.0;
 
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56.sdp,
-      textStyle: TextStyle(
+      textStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
         fontSize: 22.sdp,
-        color: AppColors.textFieldTitleColor, // Set the text color to black
       ),
       decoration: BoxDecoration(
-        color: widget.isEnabled ? AppColors.textFieldBGColor : AppColors.unselectedItemColor,
+        color: widget.isEnabled ? Theme.of(context).inputDecorationTheme.fillColor : Theme.of(context).disabledColor,
         // Keep the box color white for both filled and unfilled states
         border: Border(
           bottom: BorderSide(

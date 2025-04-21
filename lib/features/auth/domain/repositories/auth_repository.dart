@@ -1,4 +1,5 @@
 import 'package:fpdart/fpdart.dart';
+import '../../../../core/entities/user.dart';
 import '../entities/login_response.dart';
 import '../entities/mobile_number_verification_response.dart';
 import '../entities/otp_resend_response.dart';
@@ -25,12 +26,9 @@ abstract interface class AuthRepository {
     required String code,
   });
 
-  Future<Either<Failure, LoginResponse>> loginRequest({
+  Future<Either<Failure, User>> loginRequest({
     required String phone,
     required String code,
+    required bool isRemember,
   });
-
-  Future<Either<Failure, bool>> setRememberMe({required bool value});
-
-  Future<Either<Failure, bool>> getRememberMe();
 }

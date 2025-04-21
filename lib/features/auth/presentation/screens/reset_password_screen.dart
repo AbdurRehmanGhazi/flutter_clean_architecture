@@ -69,7 +69,7 @@ class __ResetPasswordViewState extends State<_ResetPasswordView> {
     return BlocConsumer<RegistrationBloc, RegistrationState>(
         listener: (context, state) {
           if (state is RegistrationSuccess) {
-            context.go(AppRoute.welcome.toPath);
+            context.go(AppRoute.login.toPath);
             Timer(const Duration(milliseconds: 500), () => showSnackBar('Password Reset Successfully!', globalNavigatorKey.currentContext));
           } else if (state is RegistrationFailure) {
             showSnackBar(state.message, context);

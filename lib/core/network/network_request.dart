@@ -43,7 +43,7 @@ class NetworkRequest {
     await _isInternetConnected();
 
     // Set headers with Bearer token
-    final token = await SecureStore.getToken();
+    final token = await SecureStorage.getToken();
     final options = Options(
       headers: {
         'Authorization': token != null ? 'Bearer $token' : null,
@@ -108,7 +108,7 @@ class NetworkRequest {
     await _isInternetConnected();
 
     // Set headers with Bearer token
-    final token = await SecureStore.getToken();
+    final token = await SecureStorage.getToken();
     final options = Options(
       headers: {
         'Authorization': token != null ? 'Bearer $token' : null,

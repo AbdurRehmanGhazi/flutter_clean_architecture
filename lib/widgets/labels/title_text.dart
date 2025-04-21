@@ -33,10 +33,11 @@ class TitleText extends StatelessWidget {
         ? _getTextWidget(context)
         : ShaderMask(
             shaderCallback: (Rect bounds) => LinearGradient(
-              colors: [AppColors.gradient1, AppColors.gradient2],
+              colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ).createShader(bounds),
+            blendMode: BlendMode.srcIn,
             child: _getTextWidget(context),
           );
   }

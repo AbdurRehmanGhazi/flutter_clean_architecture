@@ -136,8 +136,8 @@ class ThemeProvider with ChangeNotifier {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // update status bar color
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: AppColors.backgroundColor,
-        systemNavigationBarColor: AppColors.backgroundColor, // navigation bar color
+        statusBarColor: appPalette.backgroundColor,
+        systemNavigationBarColor: appPalette.backgroundColor, // navigation bar color
         statusBarIconBrightness: Brightness.light, // For Android status bar text color
         statusBarBrightness: Brightness.dark, // For iOS status bar text color
       ));
@@ -148,8 +148,8 @@ class ThemeProvider with ChangeNotifier {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // update status bar color
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: AppColors.backgroundColor,
-        systemNavigationBarColor: AppColors.backgroundColor, // navigation bar color
+        statusBarColor: appPalette.backgroundColor,
+        systemNavigationBarColor: appPalette.backgroundColor, // navigation bar color
         statusBarIconBrightness: Brightness.dark, // For Android status bar text color
         statusBarBrightness: Brightness.light, // For iOS status bar text color
       ));

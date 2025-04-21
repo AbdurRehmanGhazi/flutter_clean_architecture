@@ -1,20 +1,23 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import '../entities/user.dart';
+
 enum SecureStoreKey {
   token,
   userData,
+  mobileNumber,
   password,
 }
 
-class SecureStore {
+class SecureStorage {
   // Create a private constructor
-  SecureStore._internal();
+  SecureStorage._internal();
 
   // Singleton instance
-  static final SecureStore _instance = SecureStore._internal();
+  static final SecureStorage _instance = SecureStorage._internal();
 
   // Getter for the singleton instance
-  factory SecureStore() {
+  factory SecureStorage() {
     return _instance;
   }
 
@@ -62,19 +65,19 @@ class SecureStore {
 
 
   // Save user object securely
-  // static Future<void> saveUser(User user) async {
-  //   String userJson = user.toRawJson(); // Serialize the user object
-  //   await saveSecureData(SecureStoreKey.userData, userJson);
-  // }
+  static Future<void> saveUser(User? user) async {
+    String userJson = user?.toRawJson() ?? ''; // Serialize the user object
+    await saveSecureData(SecureStoreKey.userData, userJson);
+  }
 
   // Retrieve user object securely
-  // static Future<User?> getUser() async {
-  //   String? userJson = await getSecureData(SecureStoreKey.userData); // Retrieve the user JSON string
-  //   if (userJson != null) {
-  //     return User.fromRawJson(userJson); // Deserialize into User object
-  //   }
-  //   return null; // Return null if no user data found
-  // }
+  static Future<User?> getUser() async {
+    String? userJson = await getSecureData(SecureStoreKey.userData); // Retrieve the user JSON string
+    if (userJson != null && userJson.isNotEmpty) {
+      return User.fromRawJson(userJson); // Deserialize into User object
+    }
+    return null; // Return null if no user data found
+  }
 
   // Retrieve token
   static Future<String?> getToken() async {
@@ -85,17 +88,17 @@ class SecureStore {
 
   // Save Password securely
   static Future<void> savePassword(String value) async {
-    SecureStore.saveSecureData(SecureStoreKey.password, value);
+    SecureStorage.saveSecureData(SecureStoreKey.password, value);
   }
 
   // Retrieve Password data
   static Future<String?> getPassword() {
-    return SecureStore.getSecureData(SecureStoreKey.password);
+    return SecureStorage.getSecureData(SecureStoreKey.password);
   }
 
   // Delete Password data
   static Future<void> deletePassword() async {
-    await SecureStore.deleteSecureData(SecureStoreKey.password);
+    await SecureStorage.deleteSecureData(SecureStoreKey.password);
   }
 
 }

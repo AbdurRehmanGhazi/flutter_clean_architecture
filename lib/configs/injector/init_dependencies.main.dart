@@ -10,7 +10,9 @@ Future<void> initDependencies() async {
   getIt.registerFactory(() => InternetConnection());
   getIt.registerLazySingleton(() => AppUserCubit());
 
-  String initialRoutePath = await SharedPreference.isLogin() ? AppRoute.dashboard.toPath : AppRoute.welcome.toPath;
+  final isRemember = await SharedPreference.getRememberMe();
+  final isLogin =  await SharedPreference.isLogin();
+  String initialRoutePath = isLogin ? AppRoute.dashboard.toPath : isRemember ? AppRoute.login.toPath : AppRoute.mobileNumberVerification.toPath;
   getIt.registerLazySingleton(() => AppRouterConfig(initialRoutePath: initialRoutePath));
 
   getIt.registerFactory<ConnectionChecker>(

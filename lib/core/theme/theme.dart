@@ -1,4 +1,189 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/core/utils/sdp.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../widgets/classes/rect_slider_thumb_shape.dart';
+import 'app_colors.dart';
+
+class AppTheme {
+  static String? customFontFamily = GoogleFonts.inter().fontFamily;
+
+  static _border({required Color color}) => UnderlineInputBorder(
+    borderSide: BorderSide(color: color, width: 4),
+  );
+
+  static textTheme(AppColorsMain appColors) => TextTheme(
+    // **1. AppBar Title**
+    titleLarge: TextStyle(
+      color: appColors.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 20.sdp,
+      fontWeight: FontWeight.bold,
+    ),
+
+    // **2. Main Page Titles (Big Titles)**
+    headlineLarge: TextStyle(
+      // color: appColors.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 28.sdp,
+      fontWeight: FontWeight.w500,
+    ),
+
+    // **3. Section Titles (Card Titles, Headers)**
+    titleMedium: TextStyle(
+      color: appColors.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 18.sdp,
+      fontWeight: FontWeight.w600,
+    ),
+
+    // **4. TextField (Normal Content, Paragraphs)**
+    bodyLarge: TextStyle(
+      color: appColors.textFieldTitleColor,
+      fontFamily: customFontFamily,
+      fontSize: 16.sdp,
+      fontWeight: FontWeight.normal,
+    ),
+
+    // **4. Body Text (Normal Content, Paragraphs)**
+    bodyMedium: TextStyle(
+      color: appColors.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 14.sdp,
+      fontWeight: FontWeight.normal,
+    ),
+
+    // **6. Labels (Tags, Chips, Small Labels)**
+    labelLarge: TextStyle(
+      color: appColors.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 14.sdp,
+      fontWeight: FontWeight.w500,
+    ),
+
+    labelMedium: TextStyle(
+      color: appColors.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 12.sdp,
+      fontWeight: FontWeight.w500,
+    ),
+
+    labelSmall: TextStyle(
+      color: appColors.primaryTextColor,
+      fontFamily: customFontFamily,
+      fontSize: 10.sdp,
+      fontWeight: FontWeight.w400,
+    ),
+    titleSmall: TextStyle(color: appColors.primaryTextColor, fontFamily: customFontFamily),
+    displayLarge: TextStyle(color: appColors.primaryTextColor, fontFamily: customFontFamily),
+    displayMedium: TextStyle(color: appColors.primaryTextColor, fontFamily: customFontFamily),
+    displaySmall: TextStyle(color: appColors.primaryTextColor, fontFamily: customFontFamily),
+    headlineMedium: TextStyle(color: appColors.primaryTextColor, fontFamily: customFontFamily),
+    headlineSmall: TextStyle(color: appColors.primaryTextColor, fontFamily: customFontFamily),
+    bodySmall: TextStyle(color: appColors.primaryTextColor, fontFamily: customFontFamily),
+  );
+
+  static themeData(AppColorsMain appColors, Brightness brightness) => ThemeData(
+      colorScheme: ColorScheme(
+          brightness: brightness,
+          primary: appColors.primaryColor,
+          onPrimary: appColors.primaryTextColor,
+          secondary: appColors.secondaryColor,
+          onSecondary: appColors.textFieldTitleColor,
+          error: appColors.warningColor,
+          onError: appColors.warningColor,
+          surface: appColors.primaryTextColor,
+          onSurface: appColors.backgroundColor,
+      ),
+
+      canvasColor: appColors.backgroundColor,
+      cardColor: appColors.primaryCardColor,
+      dialogBackgroundColor: appColors.backgroundColor,
+      disabledColor: appColors.disabledColor,
+      dividerColor: appColors.borderColor,
+      focusColor: appColors.primaryColor,
+      highlightColor: appColors.primaryColor,
+      hintColor: appColors.primaryTextColor,
+      hoverColor: appColors.primaryColor,
+      indicatorColor: appColors.primaryColor,
+      primaryColor: appColors.primaryColor,
+      primaryColorDark: appColors.primaryColor,
+      primaryColorLight: appColors.whiteColor,
+      scaffoldBackgroundColor: appColors.backgroundColor,
+      secondaryHeaderColor: appColors.primaryColor,
+      shadowColor: appColors.shadowColor,
+      splashColor: appColors.backgroundColor,
+
+      appBarTheme: AppBarTheme(
+        backgroundColor: appColors.backgroundColor,
+        surfaceTintColor: Colors.transparent, // Prevents color changes on scroll
+        elevation: 0,
+        titleTextStyle: TextStyle(fontSize: 16.sdp, fontWeight: FontWeight.w400, color: appColors.primaryTextColor,),
+        iconTheme: IconThemeData(color: appColors.primaryTextColor), // Light icons for AppBar
+      ),
+      textTheme: textTheme(appColors),
+      cardTheme: CardTheme(
+        color: appColors.primaryCardColor, // Light mode card color
+        shadowColor: appColors.shadowColor,
+        elevation: 4,
+        clipBehavior: Clip.hardEdge,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+          side: BorderSide(color: appColors.borderColor.withAlpha(40), width: 1)
+        )
+      ),
+      sliderTheme: SliderThemeData(
+        overlayShape: SliderComponentShape.noOverlay,
+        trackShape: const RectangularSliderTrackShape(),
+        thumbShape: const RectSliderThumbShape(width: 5),
+      ),
+      inputDecorationTheme: InputDecorationTheme(
+        // contentPadding: EdgeInsets.symmetric(vertical: 8),
+        prefixIconColor: appColors.primaryColor,
+        filled: true,
+        fillColor: appColors.textFieldBGColor,
+        labelStyle: TextStyle(color: appColors.textFieldHintColor),
+        // hintStyle: TextStyle(color: appColors.warningColor),
+        enabledBorder: _border(color: appColors.primaryColor),
+        focusedBorder: _border(color: appColors.primaryColor),
+        disabledBorder: _border(color: appColors.primaryColor),
+        errorBorder: _border(color: appColors.warningColor),
+        focusedErrorBorder: _border(color: appColors.warningColor),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: appColors.secondaryColor, // Set default background color
+          foregroundColor: appColors.whiteColor, // Text color
+          textStyle: TextStyle(
+            fontSize: 14.sdp,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: appColors.primaryTextColor,
+      contentTextStyle: TextStyle(
+      color: appColors.backgroundColor,
+      fontFamily: customFontFamily,
+      fontSize: 14.sdp,
+      fontWeight: FontWeight.normal,
+    ),
+  )
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -257,3 +442,5 @@ class AppTheme {
       ),
   );
 }
+
+ */

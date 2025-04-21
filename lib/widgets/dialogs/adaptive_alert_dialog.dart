@@ -38,7 +38,7 @@ class AdaptiveAlertDialog extends StatelessWidget {
       content: Text(content),
       actions: [
         CupertinoDialogAction(
-          child: Text(noButtonTitle, style: TextStyle(color: AppColors.warningColor)),
+          child: Text(noButtonTitle, style: TextStyle(color: Theme.of(context).colorScheme.error)),
           onPressed: () {
             Navigator.of(context).pop();
             onNoPressed();
@@ -58,15 +58,15 @@ class AdaptiveAlertDialog extends StatelessWidget {
   // Material (Android-style) AlertDialog
   Widget _buildMaterialDialog(BuildContext context) {
     return AlertDialog(
-      title: Text(title, style: TextStyle(color: AppColors.primaryTextColor)),
-      content: Text(content, style: TextStyle(color: AppColors.primaryTextColor)),
+      title: Text(title),
+      content: Text(content),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
             onNoPressed();
           },
-          child: Text(noButtonTitle),
+          child: Text(noButtonTitle, style: TextStyle(color: Theme.of(context).colorScheme.error)),
         ),
         TextButton(
           onPressed: () {

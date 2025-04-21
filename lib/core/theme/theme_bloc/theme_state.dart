@@ -8,7 +8,7 @@ class ThemeState {
   final Color statusBarColor;
   final Brightness statusBarIconBrightness;
   final Brightness statusBarBrightness;
-  final AppColorsMain appPalette;
+  final AppColorsMain appColors;
 
   ThemeState({
     required this.themeMode,
@@ -17,6 +17,6 @@ class ThemeState {
     required this.statusBarColor,
     required this.statusBarIconBrightness,
     required this.statusBarBrightness,
-    required this.appPalette,
+    required this.appColors,
   });
 }

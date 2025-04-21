@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/core/utils/extensions/buld_context.dart';
+import 'package:flutter_clean_architecture/core/utils/extensions/build_context.dart';
 
 class SDP {
   static late double width;

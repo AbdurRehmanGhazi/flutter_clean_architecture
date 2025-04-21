@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/core/constants/svgs_path.dart';
-import 'package:flutter_clean_architecture/core/utils/extensions/buld_context.dart';
+import 'package:flutter_clean_architecture/core/utils/extensions/build_context.dart';
 import 'package:flutter_clean_architecture/features/auth/presentation/screens/login_screen.dart';
 import 'package:flutter_clean_architecture/widgets/gradient_icon.dart';
 import 'package:flutter_clean_architecture/widgets/labels/description_text.dart';

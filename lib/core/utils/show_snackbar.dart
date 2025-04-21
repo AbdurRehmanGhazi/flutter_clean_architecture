@@ -17,8 +17,7 @@ void showSnackBar(String content, [BuildContext? context]) {
     ..hideCurrentSnackBar()
     ..showSnackBar(
       SnackBar(
-        content: Text(content, style: TextStyle(color: AppColors.backgroundColor),),
-        backgroundColor: AppColors.primaryTextColor,
+        content: Text(content),
       ),
     );
 }

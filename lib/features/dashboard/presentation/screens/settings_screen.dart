@@ -1,3 +1,4 @@
+import 'package:flutter_clean_architecture/widgets/dialogs/adaptive_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/core/utils/sdp.dart';
 import 'package:go_router/go_router.dart';
@@ -42,20 +43,20 @@ class SettingsScreen extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                TitleText(text: 'Abdul Samad', color: AppColors.whiteColor, fontSize: 16.sdp, fontWeight: FontWeight.bold),
+                                TitleText(text: 'Abdul Samad', color: Theme.of(context).primaryColorLight, fontSize: 16.sdp, fontWeight: FontWeight.bold),
                                 const Spacer(),
                                 ElevatedButton(
                                   onPressed: () {},
                                   style: ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(AppColors.transparentColor),
-                                      foregroundColor: WidgetStatePropertyAll(AppColors.whiteColor)
+                                      backgroundColor: WidgetStatePropertyAll(Colors.transparent),
+                                      foregroundColor: WidgetStatePropertyAll(Theme.of(context).primaryColorLight)
                                   ),
                                   child: const Text('Edit'),
                                 ),
                               ],
                             ),
-                            TitleText(text: '0335-2388222', color: AppColors.whiteColor, fontSize: 16.sdp, fontWeight: FontWeight.bold),
-                            DescriptionText(text: 'abdursamad@gmail.com', color: AppColors.whiteColor),
+                            TitleText(text: '0335-2388222', color: Theme.of(context).primaryColorLight, fontSize: 16.sdp, fontWeight: FontWeight.bold),
+                            DescriptionText(text: 'abdursamad@gmail.com', color: Theme.of(context).primaryColorLight),
                           ],
                         ),
                       ),
@@ -71,14 +72,25 @@ class SettingsScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () async {
                         if (index == options.length - 1) {
-                          await SharedPreference.saveLogin(false);
-                          context.go(AppRoute.welcome.toPath);
+                          AdaptiveAlertDialog.show(
+                              context, title: 'Logout',
+                              content: 'Are you sure to logout?',
+                              yesButtonTitle: 'Yes',
+                              noButtonTitle: 'No',
+                              onYesPressed: () async {
+                                await SharedPreference.saveLogin(false);
+                                final isRemember = await SharedPreference.getRememberMe();
+                                context.go(isRemember ? AppRoute.login.toPath : AppRoute.mobileNumberVerification.toPath);
+
+                              },
+                              onNoPressed: () {},
+                          );
                         }
                       },
                       child: Container(
                         margin: EdgeInsets.symmetric(vertical: 8.sdp),
                         padding: const EdgeInsets.all(16),
-                        decoration: createCustomBorder(allRadius: 8, all: true, borderColor: AppColors.primaryBorderColor),
+                        decoration: createCustomBorder(allRadius: 8, all: true, borderColor: Theme.of(context).primaryColor),
                         child: DescriptionText(text: options[index]),
                       ),
                     );

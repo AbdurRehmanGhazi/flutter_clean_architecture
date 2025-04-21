@@ -93,7 +93,7 @@ class _WelcomeView extends StatelessWidget {
         ],
       ),
       SizedBox(height: 16.sdp,),
-      Icon(context.watch<ThemeBloc>().state.themeIcon, size: 32.sdp, color: AppColors.primaryTextColor,)
+      Icon(context.watch<ThemeBloc>().state.themeIcon, size: 32.sdp, color: Theme.of(context).colorScheme.onPrimary)
     ],
   );
 

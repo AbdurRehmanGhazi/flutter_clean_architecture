@@ -3,7 +3,9 @@ part of 'login_bloc.dart';
 @immutable
 sealed class LoginEvent {}
 
-class LoadRememberMe extends LoginEvent {}
+class LoadRememberMe extends LoginEvent {
+  LoadRememberMe();
+}
 
 class UserLoginEvent extends LoginEvent {
   final String mobileNumber;

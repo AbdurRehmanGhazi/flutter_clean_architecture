@@ -150,7 +150,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             : IconButton(
           icon: Icon(
             _passwordVisible ? Icons.visibility : Icons.visibility_off,
-            color: AppColors.primaryButtonTextColor,
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
           onPressed: () {
             setState(() {

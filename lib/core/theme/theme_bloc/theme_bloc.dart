@@ -60,7 +60,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     Color statusBarColor;
     Brightness statusBarIconBrightness;
     Brightness statusBarBrightness;
-    AppColorsMain appPalette;
+    AppColorsMain appColors;
 
     switch (mode) {
       case AppThemeMode.light:
@@ -69,7 +69,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         statusBarColor = Colors.white;
         statusBarIconBrightness = Brightness.dark;
         statusBarBrightness = Brightness.light;
-        appPalette = AppColorsLightTheme();
+        appColors = AppColorsLightTheme();
         break;
       case AppThemeMode.dark:
         materialMode = ThemeMode.dark;
@@ -77,7 +77,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         statusBarColor = Colors.black;
         statusBarIconBrightness = Brightness.light;
         statusBarBrightness = Brightness.dark;
-        appPalette = AppColorsDarkTheme();
+        appColors = AppColorsDarkTheme();
         break;
       case AppThemeMode.system:
       default:
@@ -86,10 +86,11 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         statusBarColor = isDark ? Colors.black : Colors.white;
         statusBarIconBrightness = isDark ? Brightness.light : Brightness.dark;
         statusBarBrightness = isDark ? Brightness.dark : Brightness.light;
-        appPalette = isDark ? AppColorsDarkTheme() : AppColorsLightTheme();
+        appColors = isDark ? AppColorsDarkTheme() : AppColorsLightTheme();
         break;
     }
 
+    statusBarColor = appColors.backgroundColor;
     _updateStatusBar(statusBarColor, statusBarIconBrightness, statusBarBrightness);
     return ThemeState(
       themeMode: mode,
@@ -98,15 +99,16 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       statusBarColor: statusBarColor,
       statusBarIconBrightness: statusBarIconBrightness,
       statusBarBrightness: statusBarBrightness,
-      appPalette: appPalette,
+      appColors: appColors,
     );
   }
 
   static void _updateStatusBar(Color color, Brightness iconBrightness, Brightness brightness) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: color,
-        systemNavigationBarColor: color,
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent, // color
         statusBarIconBrightness: iconBrightness,
         statusBarBrightness: brightness,
       ));

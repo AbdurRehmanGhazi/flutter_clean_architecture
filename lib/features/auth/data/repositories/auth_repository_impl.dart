@@ -1,3 +1,5 @@
+import 'package:flutter_clean_architecture/core/entities/user.dart';
+import 'package:flutter_clean_architecture/core/secrets/secure_storage.dart';
 import 'package:flutter_clean_architecture/core/secrets/shared_preference.dart';
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/error/failures.dart';
@@ -8,7 +10,6 @@ import '../models/requests/mobile_number_verification_request_model.dart';
 import '../models/requests/otp_resend_request_model.dart';
 import '../models/requests/otp_verification_request_model.dart';
 import '../models/requests/registration_request_model.dart';
-import '../models/responses/login_response_model.dart';
 import '../models/responses/mobile_number_verification_response_model.dart';
 import '../models/responses/otp_resend_response_model.dart';
 import '../models/responses/registration_response_model.dart';
@@ -24,6 +25,7 @@ class AuthRepositoryImpl implements AuthRepository {
       final res = await authRemoteDataSource.mobileNumberVerificationRequest(
         payload: MobileNumberVerificationRequestModel(phone: phone),
       );
+      await SecureStorage.saveUser(User(mobileNumber: phone));
       return right(res);
     } catch (e) {
     return left(Failure(e.toString()));
@@ -68,26 +70,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, LoginResponseModel>> loginRequest({required String phone, required String code}) async {
+  Future<Either<Failure, User>> loginRequest({required String phone, required String code, required bool isRemember}) async {
     try {
       final res = await authRemoteDataSource.loginRequest(
         payload: LoginRequestModel(phone: phone, code: code),
       );
+      SecureStorage.saveUser(res);
+      await SharedPreference.setRememberMe(isRemember);
       return right(res);
     } catch (e) {
       return left(Failure(e.toString()));
     }
-  }
-
-  @override
-  Future<Either<Failure, bool>> getRememberMe() async {
-    return right(await SharedPreference.getRememberMe());
-  }
-
-  @override
-  Future<Either<Failure, bool>> setRememberMe({required bool value}) async {
-    await SharedPreference.setRememberMe(value);
-    return right(value);
   }
 
 }
